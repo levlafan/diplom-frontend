@@ -4,7 +4,17 @@ const nextConfig = {
     unoptimized: true,
   },
   trailingSlash: true,
-  distDir: 'out',
+  
+  // Добавь эту секцию
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/home',
+        permanent: true,  // true = 301 редирект (навсегда), false = 302
+      },
+    ];
+  },
 };
 
 export default nextConfig;
