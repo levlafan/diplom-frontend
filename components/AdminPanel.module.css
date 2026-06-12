@@ -1,0 +1,424 @@
+/* ==========================================================================
+   АДМИН-ПАНЕЛЬ - ОСНОВНЫЕ СТИЛИ
+   ========================================================================== */
+
+.block {
+  margin-bottom: 40px;
+}
+
+.blockTitle {
+  font-family: "Crazy", "Montserrat", sans-serif;
+  font-size: 1.3rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+  margin: 0 0 20px 0;
+  color: var(--text-main);
+  border-bottom: 2px solid var(--border-black);
+  padding-bottom: 10px;
+}
+
+/* ==========================================================================
+   СТАТИСТИКА (КАРТОЧКИ)
+   ========================================================================== */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 16px;
+}
+
+.statCard {
+  background-color: var(--bg-color);
+  border: 2px solid var(--border-black);
+  box-shadow: var(--shadow-black);
+  padding: 20px;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.statCard:hover {
+  border-color: var(--accent);
+}
+
+.statCard span {
+  display: block;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+
+.statCard small {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ==========================================================================
+   ТАБЛИЦЫ
+   ========================================================================== */
+.scrollTable {
+  overflow-x: auto;
+  background-color: var(--bg-color);
+  border: 2px solid var(--border-black);
+  box-shadow: var(--shadow-black);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8rem;
+  font-family: "Montserrat", sans-serif;
+}
+
+.table th,
+.table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-black);
+  text-align: left;
+  color: var(--text-main);
+}
+
+.table th {
+  background-color: var(--bg-paper);
+  color: var(--text-muted);
+  font-weight: 600;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.table td {
+  vertical-align: middle;
+}
+
+.table tr:hover td {
+  background-color: var(--bg-paper);
+}
+
+.table a {
+  color: var(--text-main);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.table a:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+   КНОПКИ ДЕЙСТВИЙ
+   ========================================================================== */
+.rowActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.btn {
+  padding: 6px 12px;
+  background-color: var(--bg-paper);
+  border: 1px solid var(--border-black);
+  color: var(--text-main);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: "Montserrat", sans-serif;
+}
+
+.btn:hover {
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+
+/* Одобрить / Принять */
+.btnApprove {
+  background-color: transparent;
+  border-color: #2e7d32;
+  color: #2e7d32;
+}
+
+.btnApprove:hover {
+  background-color: #2e7d32;
+  color: var(--bg-white);
+  border-color: #2e7d32;
+}
+
+/* Отклонить / Скрыть */
+.btnReject {
+  background-color: transparent;
+  border-color: #c62828;
+  color: #c62828;
+}
+
+.btnReject:hover {
+  background-color: #c62828;
+  color: var(--bg-white);
+  border-color: #c62828;
+}
+
+/* Забанить */
+.btnBan {
+  background-color: transparent;
+  border-color: #6d28d9;
+  color: #6d28d9;
+}
+
+.btnBan:hover {
+  background-color: #6d28d9;
+  color: var(--bg-white);
+  border-color: #6d28d9;
+}
+
+/* Разблокировать */
+.btnUnban {
+  background-color: transparent;
+  border-color: #0284c7;
+  color: #0284c7;
+}
+
+.btnUnban:hover {
+  background-color: #0284c7;
+  color: var(--bg-white);
+  border-color: #0284c7;
+}
+
+/* Скрыть (комикс) */
+.btnHide {
+  background-color: transparent;
+  border-color: #ea580c;
+  color: #ea580c;
+}
+
+.btnHide:hover {
+  background-color: #ea580c;
+  color: var(--bg-white);
+  border-color: #ea580c;
+}
+
+/* ==========================================================================
+   БЕЙДЖИ (СТАТУСЫ)
+   ========================================================================== */
+.badge {
+  display: inline-block;
+  padding: 4px 8px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border: 1px solid transparent;
+}
+
+.badgeOk {
+  background-color: rgba(46, 125, 50, 0.15);
+  border-color: #2e7d32;
+  color: #2e7d32;
+}
+
+.badgeBanned {
+  background-color: rgba(198, 40, 40, 0.15);
+  border-color: #c62828;
+  color: #c62828;
+}
+
+.badgePending {
+  background-color: rgba(245, 158, 11, 0.15);
+  border-color: #ea580c;
+  color: #ea580c;
+}
+
+/* ==========================================================================
+   ПУСТЫЕ СОСТОЯНИЯ
+   ========================================================================== */
+.empty {
+  text-align: center;
+  padding: 40px 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background-color: var(--bg-paper);
+  border: 1px dashed var(--border-black);
+  margin: 0;
+}
+
+/* ==========================================================================
+   ТЕМНАЯ ТЕМА
+   ========================================================================== */
+html[data-theme="dark"] .btnApprove {
+  border-color: #4caf50;
+  color: #4caf50;
+}
+
+html[data-theme="dark"] .btnApprove:hover {
+  background-color: #4caf50;
+  color: #111111;
+}
+
+html[data-theme="dark"] .btnReject {
+  border-color: #f44336;
+  color: #f44336;
+}
+
+html[data-theme="dark"] .btnReject:hover {
+  background-color: #f44336;
+  color: #111111;
+}
+
+html[data-theme="dark"] .btnBan {
+  border-color: #a78bfa;
+  color: #a78bfa;
+}
+
+html[data-theme="dark"] .btnBan:hover {
+  background-color: #a78bfa;
+  color: #111111;
+}
+
+html[data-theme="dark"] .btnHide {
+  border-color: #fb923c;
+  color: #fb923c;
+}
+
+html[data-theme="dark"] .btnHide:hover {
+  background-color: #fb923c;
+  color: #111111;
+}
+
+/* ==========================================================================
+   АДАПТИВНОСТЬ
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .cards {
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 12px;
+  }
+
+  .statCard {
+    padding: 16px;
+  }
+
+  .statCard span {
+    font-size: 1.8rem;
+  }
+
+  .statCard small {
+    font-size: 0.65rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .block {
+    margin-bottom: 30px;
+  }
+
+  .blockTitle {
+    font-size: 1.1rem;
+    margin-bottom: 16px;
+  }
+
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .statCard {
+    padding: 14px;
+  }
+
+  .statCard span {
+    font-size: 1.5rem;
+  }
+
+  .statCard small {
+    font-size: 0.6rem;
+  }
+
+  .table th,
+  .table td {
+    padding: 10px 12px;
+    font-size: 0.7rem;
+  }
+
+  .table th {
+    font-size: 0.65rem;
+  }
+
+  .btn {
+    padding: 4px 8px;
+    font-size: 0.6rem;
+  }
+
+  .rowActions {
+    gap: 6px;
+  }
+
+  .badge {
+    padding: 3px 6px;
+    font-size: 0.55rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .scrollTable {
+    border-width: 1px;
+  }
+
+  .table th,
+  .table td {
+    padding: 8px 10px;
+    font-size: 0.65rem;
+  }
+
+  .btn {
+    padding: 3px 6px;
+    font-size: 0.55rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .block {
+    margin-bottom: 24px;
+  }
+
+  .blockTitle {
+    font-size: 1rem;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+  }
+
+  .table th,
+  .table td {
+    padding: 6px 8px;
+    font-size: 0.6rem;
+  }
+
+  .table th {
+    font-size: 0.55rem;
+  }
+
+  .btn {
+    padding: 3px 5px;
+    font-size: 0.5rem;
+  }
+
+  .badge {
+    padding: 2px 4px;
+    font-size: 0.5rem;
+  }
+
+  .empty {
+    padding: 30px 16px;
+    font-size: 0.75rem;
+  }
+}

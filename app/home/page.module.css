@@ -1,0 +1,350 @@
+.page {
+  color: #0A0C14;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  min-height: 100vh;
+  padding: 40px 20px;
+}
+
+.layout {
+  max-width: 100%;
+  margin: 0 110px;
+}
+
+.mainContent {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+/* Секции */
+.section, 
+.dualSection, 
+.sliderSection, 
+.topsRow {
+  width: 100%;
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-bottom: 1px solid #111111;
+  padding-bottom: 10px;
+  margin-bottom: 25px;
+  position: relative;
+}
+
+.sectionHeader h2 {
+  font-size: 2rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+  margin: 0;
+}
+
+/* Двойная секция (Продолжить + Новое) */
+.dualSection {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.dualColumn {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* Специфичный заголовок h2 внутри колонки "Продолжить чтение" */
+.dualColumn > h2 {
+  font-size: 2rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+  margin: 0 0 25px 0;
+  border-bottom: 1px solid #111111;
+  padding-bottom: 10px;
+  width: 100%;
+}
+
+/* Ссылки "Смотреть все" */
+.viewAllBtn {
+  color: #666666;
+  text-decoration: none;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  font-weight: 500;
+  transition: color 0.2s;
+  white-space: nowrap;
+  
+  position: absolute;
+  right: 0;
+  top: 14px;
+}
+
+.viewAllBtn:hover {
+  color: #111111;
+}
+
+.sectionHeader .viewAllBtn {
+  top: auto;
+  bottom: 10px;
+}
+
+/* СЕТКИ ДЛЯ КАРТОЧЕК КОМИКСОВ */
+/* ПОПУЛЯРНОЕ — 6 колонок на больших экранах */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 20px;
+}
+
+/* Продолжить читать и Новое — 3 колонки */
+.smallGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+@media (max-width: 1400px) {
+  .grid {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 18px;
+  }
+}
+
+/* 4 колонки для средних экранов */
+@media (max-width: 1200px) {
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+}
+
+/* 3 колонки для планшетов */
+@media (max-width: 992px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+  }
+}
+
+/* 2 колонки для маленьких планшетов */
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  
+  .smallGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* 1 колонка для мобильных телефонов */
+@media (max-width: 480px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  
+  .smallGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.continueTitle {
+  font-size: 2rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+  margin: 0 0 25px 0;
+  position: relative;
+  display: inline-block;
+}
+
+.continueTitle::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -300px;
+  width: 710px;
+  height: 100%;
+  background-color: var(--accent);
+  z-index: -1;
+}
+
+.popularTitle {
+  font-size: 2rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+  margin: 0 0 25px 0;
+  position: relative;
+  display: inline-block;
+}
+
+.popularTitle::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -300px;
+  width: 710px;
+  height: 100%;
+  background-color: var(--accent);
+  z-index: -1;
+}
+
+/* ==========================================================================
+   ЗАГОЛОВОК "НОВОЕ" (БЕЗ ОРАНЖЕВОГО ФОНА ПО УМОЛЧАНИЮ)
+   ========================================================================== */
+.newTitle {
+  font-size: 2rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+  margin: 0 0 25px 0;
+}
+
+/* ==========================================================================
+   КЛАСС ДЛЯ ОРАНЖЕВОГО ФОНА (ТОЛЬКО КОГДА ПОЛЬЗОВАТЕЛЬ ВЫШЕЛ)
+   ========================================================================== */
+.hasBlueBackground {
+  position: relative;
+  display: inline-block;
+}
+
+.hasBlueBackground::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -300px;
+  width: 710px;
+  height: 100%;
+  background-color: var(--accent);
+  z-index: -1;
+}
+
+/* ==========================================================================
+   СЕКЦИЯ ТОПОВ И СТАРОЖИЛОВ
+   ========================================================================== */
+.topsRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  background-color: var(--bg-elevated);
+  border: 2px solid var(--border-black);
+  padding: 35px;
+  box-shadow: var(--shadow-black);
+  margin-top: 20px;
+  width: 100%;
+}
+
+.topBlock h3 {
+  font-size: 1.25rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  margin: 0 0 20px 0;
+  letter-spacing: 0.5px;
+  color: var(--text-main);
+  border-bottom: 2px solid var(--border-black);
+  padding-bottom: 8px;
+}
+
+.topList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.topList li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border-soft);
+  font-size: 0.95rem;
+  color: var(--text-main);
+}
+
+.topList li:last-child {
+  border-bottom: none;
+}
+
+.topList li:only-child {
+  color: var(--text-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+}
+
+.topList li a {
+  color: var(--text-main);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.topList li a:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+.topMeta {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   ОСТАЛЬНАЯ АДАПТИВНОСТЬ
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .layout {
+    margin: 0 60px;
+  }
+}
+
+@media (max-width: 900px) {
+  .dualSection, 
+  .topsRow {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+
+  .viewAllBtn {
+    position: static;
+    margin-top: -15px;
+    margin-bottom: 15px;
+    display: inline-block;
+    align-self: flex-start;
+  }
+  
+  .sectionHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .sectionHeader .viewAllBtn {
+    position: static;
+  }
+}
+
+@media (max-width: 768px) {
+  .layout {
+    margin: 0 20px;
+  }
+  
+  .page {
+    padding: 20px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .layout {
+    margin: 0 16px;
+  }
+}

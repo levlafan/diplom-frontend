@@ -1,0 +1,378 @@
+.wrap {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ==========================================================================
+   КАРТОЧКА ФОРМЫ
+   ========================================================================== */
+.card {
+  background-color: var(--bg-color);
+  border: 2px solid var(--border-black);
+  box-shadow: var(--shadow-black);
+  padding: 40px;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+  width: 100%;
+  max-width: 420px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ==========================================================================
+   ЗАГОЛОВОК
+   ========================================================================== */
+.singup {
+  font-family: "Crazy", "Montserrat", sans-serif;
+  font-size: 30pt;
+  font-weight: 500;
+  text-transform: uppercase;
+  border-bottom: 2px solid var(--border-black);
+  padding-bottom: 12px;
+  margin: 0 0 5px 0;
+  color: var(--text-main);
+  letter-spacing: -0.5px;
+  text-align: center;
+  width: 100%;
+}
+
+/* ==========================================================================
+   ПОЛЯ ВВОДА
+   ========================================================================== */
+.inputBox {
+  position: relative;
+  width: 100%;
+  max-width: 300px;
+}
+
+.inputBox input {
+  width: 100%;
+  padding: 14px 12px;
+  outline: none;
+  border: 2px solid var(--border-black);
+  background-color: var(--bg-paper);
+  color: var(--text-main);
+  font-size: 10pt;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  border-radius: 0;
+}
+
+.inputBox input::placeholder {
+  color: transparent;
+}
+
+.inputBox input:focus {
+  border-color: var(--accent);
+  background-color: var(--bg-white);
+  box-shadow: 3px 3px 0px var(--accent);
+}
+
+.inputBox input:hover:not(:focus) {
+  border-color: var(--accent);
+}
+
+.inputBox span {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 0 5px;
+  pointer-events: none;
+  font-size: 10pt;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  transition: 0.2s ease;
+  letter-spacing: 0.5px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  background-color: transparent;
+  white-space: nowrap;
+}
+
+.inputBox input:focus ~ span,
+.inputBox input:not(:placeholder-shown) ~ span {
+  transform: translateY(-32px) translateX(-5px);
+  font-size: 0.7rem;
+  padding: 0 5px;
+  background-color: var(--bg-color);
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+/* Адаптация для разных типов полей */
+.inputBox input[type="email"]:focus ~ span,
+.inputBox input[type="email"]:not(:placeholder-shown) ~ span {
+  transform: translateY(-32px) translateX(-5px);
+}
+
+.inputBox input[type="password"]:focus ~ span,
+.inputBox input[type="password"]:not(:placeholder-shown) ~ span {
+  transform: translateY(-32px) translateX(-5px);
+}
+
+/* ==========================================================================
+   КНОПКА ОТПРАВКИ
+   ========================================================================== */
+.enter {
+  background-color: var(--border-black);
+  color: var(--bg-elevated);
+  border: 2px solid var(--border-black);
+  border-radius: 0;
+  padding: 14px 28px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  white-space: nowrap;
+  box-shadow: 4px 4px 0px var(--accent);
+  transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.2s;
+  font-family: "Montserrat", sans-serif;
+  width: 100%;
+  max-width: 300px;
+}
+
+.enter:hover:not(:disabled) {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px var(--bg-white);
+  background-color: var(--accent);
+  color: var(--bg-white);
+  border-color: var(--bg-white);
+}
+
+.enter:active:not(:disabled) {
+  transform: translate(2px, 2px);
+  box-shadow: 0px 0px 0px var(--bg-white);
+}
+
+.enter:disabled {
+  background-color: var(--bg-paper);
+  border-color: var(--border-black);
+  color: var(--text-muted);
+  box-shadow: none;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Темная тема для кнопки */
+html[data-theme="dark"] .enter {
+  background-color: transparent;
+  color: var(--text-main);
+  border-color: var(--border-black);
+  box-shadow: 4px 4px 0px var(--accent);
+}
+
+html[data-theme="dark"] .enter:hover:not(:disabled) {
+  background-color: var(--accent);
+  color: #111111;
+  border-color: var(--bg-white);
+  box-shadow: 6px 6px 0px var(--bg-white);
+}
+
+/* ==========================================================================
+   СООБЩЕНИЯ ОБ ОШИБКАХ
+   ========================================================================== */
+.message {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #c62828;
+  text-align: center;
+  padding: 10px 14px;
+  background-color: rgba(198, 40, 40, 0.1);
+  border: 2px solid #c62828;
+  border-radius: 0;
+  width: 100%;
+  max-width: 300px;
+  font-family: "Montserrat", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0;
+}
+
+/* ==========================================================================
+   РАЗДЕЛИТЕЛЬ (если используется)
+   ========================================================================== */
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  max-width: 300px;
+  color: var(--text-muted);
+  font-size: 0.7rem;
+  font-family: "Montserrat", sans-serif;
+  text-transform: uppercase;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background-color: var(--border-black);
+}
+
+/* ==========================================================================
+   КНОПКА YANDEX (если используется)
+   ========================================================================== */
+.yandexBtn {
+  background-color: transparent;
+  color: var(--text-main);
+  border: 2px solid var(--border-black);
+  border-radius: 0;
+  padding: 12px 24px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 4px 4px 0px var(--border-black);
+  transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.2s;
+  font-family: "Montserrat", sans-serif;
+  width: 100%;
+  max-width: 300px;
+}
+
+.yandexBtn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px var(--bg-white);
+  background-color: var(--accent);
+  color: var(--bg-white);
+  border-color: var(--bg-white);
+}
+
+.yandexBtn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 0px 0px 0px var(--bg-white);
+}
+
+/* Темная тема для Yandex кнопки */
+html[data-theme="dark"] .yandexBtn {
+  background-color: transparent;
+  color: var(--text-main);
+  border-color: var(--border-black);
+  box-shadow: 4px 4px 0px var(--border-black);
+}
+
+html[data-theme="dark"] .yandexBtn:hover {
+  background-color: var(--accent);
+  color: #111111;
+  border-color: var(--bg-white);
+  box-shadow: 6px 6px 0px var(--bg-white);
+}
+
+/* ==========================================================================
+   ССЫЛКИ
+   ========================================================================== */
+.link {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  transition: color 0.2s ease;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+}
+
+.link:hover {
+  color: var(--accent);
+}
+
+/* ==========================================================================
+   АДАПТИВНОСТЬ
+   ========================================================================== */
+@media (max-width: 768px) {
+  .wrap {
+    padding: 30px 20px;
+  }
+
+  .card {
+    padding: 30px 24px;
+    gap: 20px;
+    max-width: 380px;
+  }
+
+  .singup {
+    font-size: 1.5rem;
+  }
+
+  .inputBox {
+    max-width: 280px;
+  }
+
+  .inputBox input {
+    padding: 12px 10px;
+  }
+
+  .inputBox input:focus ~ span,
+  .inputBox input:not(:placeholder-shown) ~ span {
+    transform: translateY(-28px) translateX(-5px);
+    font-size: 0.65rem;
+  }
+
+  .enter,
+  .yandexBtn {
+    max-width: 280px;
+    padding: 12px 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .wrap {
+    padding: 20px 16px;
+  }
+
+  .card {
+    padding: 24px 20px;
+    gap: 18px;
+    max-width: 100%;
+  }
+
+  .singup {
+    font-size: 1.3rem;
+  }
+
+  .inputBox {
+    max-width: 100%;
+  }
+
+  .inputBox input {
+    padding: 10px 12px;
+    font-size: 9pt;
+  }
+
+  .inputBox span {
+    font-size: 9pt;
+  }
+
+  .inputBox input:focus ~ span,
+  .inputBox input:not(:placeholder-shown) ~ span {
+    transform: translateY(-26px) translateX(-5px);
+    font-size: 0.6rem;
+  }
+
+  .enter,
+  .yandexBtn {
+    max-width: 100%;
+    padding: 10px 20px;
+    font-size: 0.75rem;
+  }
+
+  .message {
+    font-size: 0.65rem;
+    padding: 8px 12px;
+  }
+}

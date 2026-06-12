@@ -1,0 +1,381 @@
+/* ==========================================================================
+   ОСНОВНАЯ СЕКЦИЯ КОММЕНТАРИЕВ - единый стиль с .hero
+   ========================================================================== */
+.section {
+  background-color: var(--bg-color);
+  border: 2px solid var(--border-black);
+  box-shadow: var(--shadow-black);
+  padding: 40px;
+  transition: all 0.2s ease;
+  font-family: "Montserrat", sans-serif;
+}
+
+/* Заголовок секции */
+.title {
+  font-size: 1.4rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+  margin: 0 0 25px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 2px solid var(--border-black);
+  padding-bottom: 12px;
+  color: var(--text-main);
+}
+
+/* Состояния загрузки и отсутствия данных */
+.loading, 
+.empty {
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 20px 0;
+}
+
+/* ==========================================================================
+   ФОРМА ОТПРАВКИ НОВОГО КОММЕНТАРИЯ
+   ========================================================================== */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 35px;
+}
+
+/* Поле ввода текста (Общее для главной формы и ответов) */
+.textarea {
+  width: 100%;
+  padding: 14px;
+  font-size: 0.95rem;
+  font-family: "Montserrat", sans-serif;
+  color: var(--text-main);
+  background-color: var(--bg-paper);
+  border: 1px solid var(--border-black);
+  border-radius: 0;
+  resize: vertical;
+  outline: none;
+  transition: background-color 0.2s, border-width 0.2s;
+}
+
+.textarea:focus {
+  background-color: var(--bg-white);
+  border-width: 2px;
+  padding: 13px;
+}
+
+.textarea:disabled {
+  background-color: var(--bg-paper);
+  color: var(--text-muted);
+  cursor: not-allowed;
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+/* Главная кнопка отправки */
+.submitBtn {
+  align-self: flex-start;
+  background-color: var(--border-black);
+  color: var(--bg-elevated);
+  border: 2px solid var(--border-black);
+  border-radius: 0;
+  padding: 12px 28px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.submitBtn:hover:not(:disabled) {
+  background-color: var(--accent);
+  color: var(--bg-white);
+  border-color: var(--accent);
+}
+
+.submitBtn:disabled {
+  background-color: var(--bg-paper);
+  border-color: var(--border-black);
+  color: var(--text-muted);
+  cursor: not-allowed;
+}
+
+/* ==========================================================================
+   ЛЕНТА И ОТДЕЛЬНЫЕ КАРТОЧКИ КОММЕНТАРИЕВ
+   ========================================================================== */
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+/* Обертка (контролирует отступ вложенности) */
+.commentWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  position: relative;
+}
+
+/* Графическая линия вложенности для ответов */
+.commentWrapper:not([style*="marginLeft: 0"]):not([style*="margin-left: 0"])::before {
+  content: '';
+  position: absolute;
+  left: -15px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background-color: var(--border-black);
+}
+
+/* Тело комментария */
+.commentItem {
+  background-color: transparent;
+  border-left: 3px solid var(--border-black);
+  padding: 5px 0 5px 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Шапка комментария */
+.commentHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* Мета-информация комментария (дата + кнопка удаления) */
+.commentMeta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Никнейм автора и цепочка ответов (User1 > User2) */
+.commentUser {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-main);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.commentUser:hover {
+  text-decoration: underline;
+}
+
+/* Дата публикации */
+.commentDate {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+/* Кнопка удаления */
+.deleteBtn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border-radius: 0;
+  transition: all 0.15s ease;
+}
+
+.deleteBtn:hover:not(:disabled) {
+  color: var(--accent);
+  transform: scale(1.05);
+}
+
+.deleteBtn:disabled {
+  color: var(--text-muted);
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* Текст сообщения */
+.commentContent {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--text-main);
+  margin: 0;
+}
+
+/* Кнопка "Ответить" под текстом */
+.replyBtn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 0;
+  width: max-content;
+  transition: color 0.15s;
+}
+
+.replyBtn:hover {
+  color: var(--accent);
+}
+
+/* Вложенная мини-форма ответа */
+.replyForm {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-left: 10px;
+  border-left: 1px dashed var(--border-black);
+}
+
+.replyForm .submitBtn {
+  padding: 8px 20px;
+  font-size: 0.75rem;
+}
+
+/* Контейнер для списка ответов */
+.replies {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 5px;
+}
+
+/* ==========================================================================
+   БЛОК ПАГИНАЦИИ (ГРАФИЧЕСКИЙ ТУМБЛЕР)
+   ========================================================================== */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 40px;
+  border-top: 1px solid var(--border-black);
+  padding-top: 25px;
+}
+
+/* Квадратные кнопки стрелок */
+.pageButton {
+  background-color: transparent;
+  color: var(--text-main);
+  border: 1px solid var(--border-black);
+  border-radius: 0;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.15s, color 0.15s;
+}
+
+.pageButton:hover:not(:disabled) {
+  background-color: var(--border-black);
+  color: var(--bg-elevated);
+}
+
+.pageButton:disabled {
+  background-color: var(--bg-paper);
+  border-color: var(--border-black);
+  color: var(--text-muted);
+  cursor: not-allowed;
+}
+
+/* Информация о текущей странице */
+.pageInfo {
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-main);
+}
+
+/* ==========================================================================
+   ТЕМНАЯ ТЕМА - ДОПОЛНИТЕЛЬНЫЕ СТИЛИ
+   ========================================================================== */
+html[data-theme="dark"] .deleteBtn:hover:not(:disabled) {
+  color: var(--accent);
+}
+
+html[data-theme="dark"] .submitBtn {
+  background-color: transparent;
+  color: var(--text-main);
+  border: 2px solid var(--border-black);
+}
+
+html[data-theme="dark"] .submitBtn:hover:not(:disabled) {
+  background-color: var(--accent);
+  color: #111111;
+  border-color: var(--accent);
+}
+
+html[data-theme="dark"] .pageButton:hover:not(:disabled) {
+  background-color: var(--border-black);
+  color: #111111;
+}
+
+/* ==========================================================================
+   АДАПТИВНОСТЬ
+   ========================================================================== */
+@media (max-width: 768px) {
+  .section {
+    padding: 20px;
+  }
+  
+  .title {
+    font-size: 1.2rem;
+  }
+  
+  .commentHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .commentMeta {
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .submitBtn {
+    width: 100%;
+    align-self: stretch;
+  }
+  
+  .pagination {
+    gap: 10px;
+  }
+  
+  .pageButton {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    padding: 15px;
+  }
+  
+  .commentItem {
+    padding-left: 10px;
+  }
+  
+  .commentWrapper:not([style*="marginLeft: 0"]):not([style*="margin-left: 0"])::before {
+    left: -8px;
+  }
+}

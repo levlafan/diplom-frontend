@@ -1,0 +1,123 @@
+/* components/AchievementsCarousel.module.css */
+
+.carouselWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.carouselContainer {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  gap: 20px;
+  padding: 8px 4px;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.carouselContainer::-webkit-scrollbar {
+  display: none;
+}
+
+.slide {
+  flex-shrink: 0;
+  width: calc(33.333% - 14px);
+  min-width: 260px;
+}
+
+.navBtn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 34px;
+  height: 34px;
+  background-color: var(--bg-color);
+  border: 2px solid var(--border-black);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow-black);
+}
+
+.navBtn:hover {
+  background-color: var(--accent);
+  color: var(--bg-white);
+  border-color: var(--accent);
+}
+
+.navLeft {
+  left: -12px;
+}
+
+.navRight {
+  right: -12px;
+}
+
+.empty {
+  text-align: center;
+  padding: 40px 20px;
+  background-color: var(--bg-color);
+  border: 2px solid var(--border-black);
+  box-shadow: var(--shadow-black);
+}
+
+.empty p {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.emptyHint {
+  font-size: 0.7rem;
+  margin-top: 8px !important;
+}
+
+@media (max-width: 1024px) {
+  .slide {
+    width: calc(50% - 10px);
+    min-width: 240px;
+  }
+}
+
+@media (max-width: 768px) {
+  .slide {
+    width: calc(50% - 8px);
+    min-width: 220px;
+  }
+  
+  .navLeft {
+    left: -8px;
+  }
+  
+  .navRight {
+    right: -8px;
+  }
+  
+  .navBtn {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+@media (max-width: 640px) {
+  .slide {
+    width: 100%;
+    min-width: 260px;
+  }
+}
+
+@media (max-width: 480px) {
+  .carouselContainer {
+    gap: 12px;
+  }
+  
+  .slide {
+    min-width: 240px;
+  }
+}

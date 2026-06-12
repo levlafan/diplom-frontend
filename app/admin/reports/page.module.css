@@ -1,0 +1,500 @@
+/* ==========================================================================
+   АДМИН-ПАНЕЛЬ - УПРАВЛЕНИЕ ЖАЛОБАМИ
+   ========================================================================== */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ==========================================================================
+   ЗАГОЛОВОК СТРАНИЦЫ
+   ========================================================================== */
+.header {
+  padding-bottom: 16px;
+  border-bottom: 2px solid var(--border-black);
+}
+
+.title {
+  font-family: "Crazy", "Montserrat", sans-serif;
+  font-size: 1.6rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+  margin: 0 0 8px 0;
+  color: var(--text-main);
+}
+
+.subtitle {
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ==========================================================================
+   ФИЛЬТРЫ И ПОИСК
+   ========================================================================== */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.searchSection {
+  flex: 1;
+  min-width: 200px;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 10px 14px;
+  background-color: var(--bg-paper);
+  border: 2px solid var(--border-black);
+  border-radius: 0;
+  color: var(--text-main);
+  font-size: 0.85rem;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.searchInput:focus {
+  border-color: var(--accent);
+  background-color: var(--bg-white);
+  box-shadow: 3px 3px 0px var(--accent);
+}
+
+.searchInput::placeholder {
+  color: var(--text-muted);
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  letter-spacing: 0.5px;
+}
+
+.statusFilters {
+  display: flex;
+  gap: 8px;
+}
+
+.filterBtn {
+  padding: 8px 16px;
+  background-color: transparent;
+  border: 2px solid var(--border-black);
+  color: var(--text-muted);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: "Montserrat", sans-serif;
+}
+
+.filterBtn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.filterActive {
+  background-color: var(--border-black);
+  color: var(--bg-elevated);
+  border-color: var(--border-black);
+}
+
+.filterActive:hover {
+  background-color: var(--accent);
+  color: var(--bg-white);
+  border-color: var(--accent);
+}
+
+/* Темная тема */
+html[data-theme="dark"] .filterActive {
+  background-color: transparent;
+  color: var(--text-main);
+  border-color: var(--accent);
+}
+
+html[data-theme="dark"] .filterActive:hover {
+  background-color: var(--accent);
+  color: #111111;
+}
+
+/* ==========================================================================
+   СПИСОК ЖАЛОБ
+   ========================================================================== */
+.reportsList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ==========================================================================
+   КАРТОЧКА ЖАЛОБЫ
+   ========================================================================== */
+.reportCard {
+  background-color: var(--bg-color);
+  border: 2px solid var(--border-black);
+  box-shadow: var(--shadow-black);
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+
+.reportCard:hover {
+  border-color: var(--accent);
+}
+
+.reportHeader {
+  padding: 14px 20px;
+  background-color: var(--bg-paper);
+  border-bottom: 1px solid var(--border-black);
+}
+
+.reportInfo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.reportId {
+  font-family: "Crazy", "Montserrat", sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.reportDate {
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  margin-left: auto;
+}
+
+/* ==========================================================================
+   БЕЙДЖИ СТАТУСОВ
+   ========================================================================== */
+.badge {
+  display: inline-block;
+  padding: 3px 10px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border: 1px solid transparent;
+}
+
+.badgePending {
+  background-color: rgba(245, 158, 11, 0.15);
+  border-color: #ea580c;
+  color: #ea580c;
+}
+
+.badgeResolved {
+  background-color: rgba(46, 125, 50, 0.15);
+  border-color: #2e7d32;
+  color: #2e7d32;
+}
+
+/* ==========================================================================
+   КОНТЕНТ ЖАЛОБЫ
+   ========================================================================== */
+.reportContent {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.reportRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 0.85rem;
+  flex-wrap: wrap;
+}
+
+.reportLabel {
+  min-width: 110px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 0.7rem;
+}
+
+.reportValue {
+  color: var(--text-main);
+  font-weight: 500;
+  word-break: break-word;
+}
+
+.reportReason {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.reportLink {
+  color: var(--text-main);
+  text-decoration: none;
+  border-bottom: 1px dashed var(--border-black);
+  transition: all 0.2s ease;
+}
+
+.reportLink:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+/* ==========================================================================
+   КНОПКИ ДЕЙСТВИЙ
+   ========================================================================== */
+.reportActions {
+  display: flex;
+  gap: 10px;
+  padding: 16px 20px;
+  background-color: var(--bg-paper);
+  border-top: 1px solid var(--border-black);
+  flex-wrap: wrap;
+}
+
+.actionBtn {
+  padding: 8px 16px;
+  background-color: transparent;
+  border: 1px solid var(--border-black);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: "Montserrat", sans-serif;
+}
+
+.actionDelete {
+  border-color: #c62828;
+  color: #c62828;
+}
+
+.actionDelete:hover {
+  background-color: #c62828;
+  color: var(--bg-white);
+  border-color: #c62828;
+}
+
+.actionBan {
+  border-color: #6d28d9;
+  color: #6d28d9;
+}
+
+.actionBan:hover {
+  background-color: #6d28d9;
+  color: var(--bg-white);
+  border-color: #6d28d9;
+}
+
+.actionDismiss {
+  border-color: #2e7d32;
+  color: #2e7d32;
+}
+
+.actionDismiss:hover {
+  background-color: #2e7d32;
+  color: var(--bg-white);
+  border-color: #2e7d32;
+}
+
+/* Темная тема */
+html[data-theme="dark"] .actionDelete {
+  border-color: #f44336;
+  color: #f44336;
+}
+
+html[data-theme="dark"] .actionDelete:hover {
+  background-color: #f44336;
+  color: #111111;
+}
+
+html[data-theme="dark"] .actionBan {
+  border-color: #a78bfa;
+  color: #a78bfa;
+}
+
+html[data-theme="dark"] .actionBan:hover {
+  background-color: #a78bfa;
+  color: #111111;
+}
+
+html[data-theme="dark"] .actionDismiss {
+  border-color: #4caf50;
+  color: #4caf50;
+}
+
+html[data-theme="dark"] .actionDismiss:hover {
+  background-color: #4caf50;
+  color: #111111;
+}
+
+/* ==========================================================================
+   ПУСТЫЕ СОСТОЯНИЯ
+   ========================================================================== */
+.empty {
+  text-align: center;
+  padding: 60px 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background-color: var(--bg-paper);
+  border: 1px dashed var(--border-black);
+}
+
+/* ==========================================================================
+   АДАПТИВНОСТЬ
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .title {
+    font-size: 1.4rem;
+  }
+
+  .reportContent {
+    padding: 16px;
+  }
+
+  .reportActions {
+    padding: 12px 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    gap: 18px;
+  }
+
+  .title {
+    font-size: 1.2rem;
+  }
+
+  .subtitle {
+    font-size: 0.7rem;
+  }
+
+  .filters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .searchSection {
+    width: 100%;
+  }
+
+  .statusFilters {
+    justify-content: center;
+  }
+
+  .filterBtn {
+    padding: 6px 12px;
+    font-size: 0.65rem;
+  }
+
+  .reportHeader {
+    padding: 10px 16px;
+  }
+
+  .reportInfo {
+    gap: 8px;
+  }
+
+  .reportDate {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .reportContent {
+    padding: 14px;
+    gap: 10px;
+  }
+
+  .reportRow {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .reportLabel {
+    min-width: auto;
+  }
+
+  .reportActions {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .actionBtn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding-bottom: 12px;
+  }
+
+  .title {
+    font-size: 1rem;
+  }
+
+  .subtitle {
+    font-size: 0.6rem;
+  }
+
+  .searchInput {
+    padding: 8px 12px;
+    font-size: 0.75rem;
+  }
+
+  .searchInput::placeholder {
+    font-size: 0.6rem;
+  }
+
+  .filterBtn {
+    padding: 5px 10px;
+    font-size: 0.6rem;
+  }
+
+  .reportId {
+    font-size: 0.75rem;
+  }
+
+  .badge {
+    padding: 2px 8px;
+    font-size: 0.55rem;
+  }
+
+  .reportDate {
+    font-size: 0.6rem;
+  }
+
+  .reportLabel {
+    font-size: 0.65rem;
+  }
+
+  .reportValue {
+    font-size: 0.75rem;
+  }
+
+  .actionBtn {
+    padding: 8px 12px;
+    font-size: 0.65rem;
+  }
+
+  .empty {
+    padding: 40px 16px;
+    font-size: 0.7rem;
+  }
+}

@@ -1,0 +1,539 @@
+
+.page {
+  color: var(--text-main);
+  font-family: "Montserrat", sans-serif;
+  min-height: 100vh;
+  padding: 40px 20px;
+  box-sizing: border-box;
+}
+
+.container {
+  max-width: 1000px; /* Удобная журнальная ширина для длинных форм */
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+/* Огромный заголовок страницы из шрифта Crazy */
+.title {
+  font-size: 30pt;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  margin: 0;
+  border-bottom: 2px solid var(--border-black);
+  padding-bottom: 10px;
+}
+
+/* Оболочка формы */
+.form {
+  background-color: var(--bg-elevated);
+  border: 2px solid var(--border-black);
+  padding: 35px;
+  box-shadow: var(--shadow-black);
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ==========================================================================
+   СТАНДАРТНЫЕ ПОЛЯ ВВОДА И ТЕКСТОВЫЕ ОБЛАСТИ
+   ========================================================================== */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.field > span,
+.genreBlock > span {
+  font-size: 10pt;
+  font-weight: 500;
+  color: var(--text-main);
+}
+
+.field input[type="text"],
+.field input[type="number"],
+.textarea,
+.field select, .tagInputRow input {
+  width: 100%;
+  padding: 14px;
+  border: 2px solid var(--border-black);
+  background-color: var(--bg-paper);
+  color: var(--text-main);
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  outline: none;
+  box-sizing: border-box;
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+
+/* Стили для option внутри select - всегда черный текст */
+.field select option {
+  background-color: #ffffff;
+  color: #111111;
+}
+
+.textarea {
+  resize: vertical;
+  text-transform: none; /* Разрешаем обычный регистр при вводе описания */
+  font-weight: 500;
+}
+
+.field input:focus,
+.textarea:focus,
+.field select:focus {
+  background-color: var(--bg-elevated);
+  border-color: var(--accent);
+  box-shadow: 3px 3px 0px var(--accent); /* Фирменный акцентный фокус */
+  color: var(--text-main);
+  font-family: "Montserrat", sans-serif ;
+}
+
+/* Поле для ввода тегов - увеличенный шрифт 14pt */
+.tagInputRow input {
+  font-size: 11pt;
+  font-family: "Montserrat", sans-serif ; 
+}
+
+/* ==========================================================================
+   БЛОКИ ЖАНРОВ И ПРЕСЕТОВ ТЕГОВ (ПЛОСКИЕ КНОПКИ)
+   ========================================================================== */
+.genreBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.genreTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  width: 100%;
+}
+
+/* Обычный тег жанра */
+.genreTag {
+  background-color: var(--bg-elevated);
+  color: var(--text-main);
+  border: 1px solid var(--border-black);
+  padding: 6px 14px;
+  font-size: 10pt;
+  font-weight: 500;
+  font-family: "Montserrat", sans-serif;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  line-height: 1.2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.genreTag:hover {
+  background-color: var(--accent);
+  color: #111111; /* Темный шрифт при наведении */
+  border-color: var(--accent);
+}
+
+/* АКТИВНЫЙ ТЕГ ЖАНРА - ТЕ ЖЕ РАЗМЕРЫ, ЧТО И У ОБЫЧНОГО */
+.genreTagActive {
+  background-color: var(--accent) !important;
+  color: var(--accent-text);
+  border: 1px solid var(--border-black) !important;
+  padding: 6px 14px !important; /* Точно такой же padding */
+  font-size: 10pt !important; /* Точно такой же размер шрифта */
+  font-weight: 500 !important; /* Точно такая же жирность */
+  font-family: "Montserrat", sans-serif ;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  line-height: 1.2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.genreTagActive:hover {
+  background-color: var(--accent) !important;
+  color: #111111 !important;
+  border-color: var(--border-black) !important;
+}
+
+/* ==========================================================================
+   СТРОКА ДЛЯ СВОИХ ТЕГОВ
+   ========================================================================== */
+.tagInputRow {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.tagInputRow input {
+  flex: 1;
+}
+
+/* Маленькая квадратная кнопка "+" */
+.tagInputRow button {
+  background-color: var(--border-black);
+  color: var(--bg-elevated);
+  border: 2px solid var(--border-black);
+  width: 53px;
+  height: 53px;
+  font-size: 20pt;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+}
+
+.tagInputRow button:hover {
+  background-color: var(--accent);
+  color: var(--bg-elevated); /* Темный шрифт при наведении */
+}
+
+/* Контейнер добавленных кастомных тегов */
+.customTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 5px;
+}
+
+.customTag {
+  font-size: 10pt;
+  font-weight: 500;
+  border: 1px dashed var(--border-black);
+  padding: 4px 8px 4px 12px;
+  background-color: var(--bg-paper);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Кнопка удаления кастомного тега (крестик) */
+.customTag button {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  transition: all 0.15s;
+}
+
+.customTag button:hover {
+  color: var(--accent);
+}
+
+/* ==========================================================================
+   МОНЕТИЗАЦИЯ И ИНЛАЙН ЧЕКБОКСЫ
+   ========================================================================== */
+.inlineCheck {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 10pt;
+  font-weight: 500;
+  cursor: pointer;
+  margin-bottom: 5px;
+}
+
+.inlineCheck input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   СОАВТОРЫ
+   ========================================================================== */
+.coAuthorRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px dashed var(--border-black);
+  padding-top: 20px;
+  margin-top: 5px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.coAuthorButton {
+  background-color: var(--border-black);
+  color: var(--bg-elevated);
+  border: 2px solid var(--border-black);
+  padding: 10px 20px;
+  font-family: "Montserrat", sans-serif ;
+  font-size: 10pt;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.coAuthorButton:hover {
+  background-color: var(--accent);
+  color: var(--bg-elevated);
+}
+
+
+.coAuthorRow p {
+  font-size: 10pt;
+  font-weight: 500;
+  color: var(--accent);
+  margin: 0;
+}
+
+/* ==========================================================================
+   ЗОНЫ ЗАГРУЗКИ ФАЙЛОВ (ОБЛОЖКА И ZIP)
+   ========================================================================== */
+.uploadBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed var(--border-black); /* Жёсткая пунктирная коробка */
+  background-color: var(--bg-paper);
+  padding: 30px 20px;
+  text-align: center;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.uploadBox:hover {
+  background-color: var(--bg-elevated);
+  border-color: var(--accent);
+}
+
+
+
+.uploadBox span:first-child {
+  font-size: 10pt;
+  font-weight: 500;
+  margin-bottom: 12px;
+  color: var(--text-main);
+  transition: color 0.15s;
+}
+
+/* Полностью скрываем дефолтный инпут загрузки, клик пойдет через лейбл */
+.uploadBox input[type="file"] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 2;
+}
+
+/* Кастомная кнопка внутри блока загрузки */
+.fileButton {
+  background-color: var(--bg-elevated);
+  border-color: var(--accent);
+  padding: 8px 20px;
+  font-size: 9pt;
+  font-weight: 600;
+  margin-bottom: 10px;
+  pointer-events: none; /* Пропускает клик на инпут */
+  transition: all 0.2s ease;
+}
+
+.uploadBox:hover .fileButton {
+  background-color: var(--accent);
+  color: #111111; 
+}
+
+.uploadBox p {
+  font-size: 9pt;
+  font-weight: 500;
+  color: var(--text-muted);
+  margin: 0;
+  text-transform: none; /* Разрешаем обычный регистр для имени файла */
+  transition: color 0.2s ease;
+}
+
+/* Превью загруженной обложки */
+.preview {
+  object-fit: cover;
+  border: 1px solid var(--border-black);
+  margin-top: 15px;
+}
+
+/* ==========================================================================
+   ПОРЯДОК СТРАНИЦ КОМИКСА (GRID-ПЛИТКИ)
+   ========================================================================== */
+.pageList {
+  border-top: 2px solid var(--border-black);
+  padding-top: 20px;
+  margin-top: 10px;
+}
+
+.pageList h3 {
+  font-family: "Crazy", "Montserrat", sans-serif;
+  font-size: 1.3rem;
+  margin: 0 0 20px 0;
+}
+
+.pageGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 15px;
+}
+
+/* Плитка отдельной страницы */
+.pageTile {
+  background-color: var(--bg-paper);
+  border: 1px solid var(--border-black);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  transition: all 0.15s;
+}
+
+.pageTile:hover {
+  border-color: var(--accent);
+}
+
+.pageThumb {
+  object-fit: cover;
+  border: 1px solid var(--border-black);
+}
+
+.pageCaption {
+  font-size: 8pt;
+  font-weight: 500;
+  color: var(--text-muted);
+  margin: 8px 0;
+  width: 100%;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-transform: none;
+}
+
+/* Кнопки перемещения страниц вверх/вниз */
+.pageActions {
+  display: flex;
+  gap: 5px;
+  width: 100%;
+}
+
+.pageActions button {
+  flex: 1;
+  background-color: var(--bg-elevated);
+  border: 1px solid var(--border-black);
+  color: var(--text-main);
+  padding: 4px 0;
+  font-size: 10pt;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.pageActions button:hover {
+  background-color: var(--accent);
+  border-color: var(--accent);
+  color: #111111; /* Темный шрифт при наведении */
+}
+
+/* ==========================================================================
+   ИНДИКАТОР ЗАГРУЗКИ (ПРОГРЕСС-БАР) И СТАТУСЫ
+   ========================================================================== */
+.progressTrack {
+  width: 100%;
+  height: 12px;
+  background-color: var(--bg-paper);
+  border: 1px solid var(--border-black);
+  margin-top: 10px;
+}
+
+.progressFill {
+  height: 100%;
+  background-color: var(--accent); /* Прогресс заполняется вашим акцентом */
+  transition: width 0.2s ease;
+}
+
+.status {
+  font-size: 10pt;
+  font-weight: 500;
+  color: var(--accent); /* Подсветка текста статуса */
+  margin: -10px 0 5px 0;
+}
+
+/* ==========================================================================
+   КНОПКА ОТПРАВКИ ФОРМЫ
+   ========================================================================== */
+.submitButton {
+  background-color: var(--border-black);
+  color: var(--bg-elevated);
+  border: 2px solid var(--border-black);
+  padding: 14px 35px;
+  font-size: 10pt;
+  font-weight: 500;
+  text-transform: uppercase;
+  cursor: pointer;
+  align-self: flex-start;
+  transition: all 0.15s ease;
+}
+
+.submitButton:hover:not(:disabled) {
+  background-color: var(--accent);
+  border-color: var(--border-black);
+  color: #111111; /* Темный шрифт при наведении */
+}
+
+
+.submitButton:active:not(:disabled) {
+  transform: translate(2px, 2px);
+  box-shadow: 0px 0px 0px var(--accent);
+}
+
+.submitButton:disabled {
+  background-color: var(--bg-paper);
+  border-color: var(--border-black);
+  color: var(--text-muted);
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+/* ==========================================================================
+   АДАПТИВНОСТЬ
+   ========================================================================== */
+@media (max-width: 600px) {
+  .form {
+    padding: 20px 15px;
+    gap: 20px;
+  }
+  
+  .title {
+    font-size: 2rem;
+  }
+  
+  .tagInputRow {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .tagInputRow button {
+    width: 100%;
+  }
+  
+  .submitButton {
+    width: 100%; /* На смартфонах кнопка публикации растягивается */
+    align-self: stretch;
+  }
+}

@@ -1,0 +1,256 @@
+/* ==========================================================================
+   ОСНОВНОЙ КОНТЕЙНЕР СЛАЙДЕРА
+   ========================================================================== */
+.slider {
+  position: relative;
+  width: 100%;
+  background-color: #ffffff; /* Белый фон блока на сером фоне страницы */
+  border: 2px solid #111111; /* Толстая брутальная рамка */
+  box-shadow: 6px 6px 0px #111111; /* Жесткая тень */
+  margin-bottom: 20px;
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* ==========================================================================
+   СТРУКТУРА СЛАЙДА (ДВЕ КОЛОНКИ В СТИЛЕ JUXTAPOZ)
+   ========================================================================== */
+.slide {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Ровно две половины: фото и текст */
+  min-height: 480px;
+}
+
+/* Левая половина: Обложка */
+.imageWrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: #eaeaea;
+  border-right: 2px solid #111111; /* Четкая вертикальная линия раздела */
+}
+
+.image {
+  object-fit: cover;
+}
+
+/* Правая половина: Информация */
+.info {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #ffffff;
+}
+
+/* Тэги / Категории */
+.tags {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+.tag {
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border: 1px solid #111111;
+  padding: 3px 8px;
+  background-color: #f4f4f4;
+  color: #111111;
+}
+
+/* Огромный газетный заголовок */
+.title {
+  font-size: 2.5rem;
+  font-weight: 500;
+  line-height: 1.1;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  margin: 0 0 15px 0;
+  color: #111111;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Блок рейтинга */
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 20px;
+}
+
+.ratingNum {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #111111;
+  margin-left: 8px;
+}
+
+/* Описание комикса */
+.description {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #444444;
+  margin: 0 0 30px 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 4; /* Ограничиваем описание, чтобы не ломать верстку */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Кнопка действия "Читать сейчас" */
+.readBtn {
+  display: inline-block;
+  background-color: #111111;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  padding: 12px 30px;
+  border: 2px solid #111111;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.readBtn:hover {
+  background-color: transparent;
+  color: #111111;
+}
+
+/* ==========================================================================
+   КНОПКИ НАВИГАЦИИ (СТРОГИЕ КВАДРАТЫ)
+   ========================================================================== */
+.navLeft, .navRight {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #ffffff;
+  color: #111111;
+  border: 2px solid #111111;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.navLeft { left: 20px; }
+.navRight { right: 20px; }
+
+.navLeft:hover, .navRight:hover {
+  background-color: #111111;
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   ИНДИКАТОРЫ СЛАЙДОВ (ЧЕРТОЧКИ ВМЕСТО КРУГЛЫХ ТОЧЕК)
+   ========================================================================== */
+.dots {
+  position: absolute;
+  bottom: 20px;
+  right: 40px;
+  display: flex;
+  gap: 6px;
+  z-index: 10;
+}
+
+.dot {
+  width: 24px;
+  height: 4px;
+  background-color: #cccccc;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.dotActive {
+  background-color: #111111;
+  width: 36px; /* Активная полоска становится длиннее */
+}
+
+/* ==========================================================================
+   СОСТОЯНИЕ ПУСТОГО СЛАЙДЕРА (КОГДА НЕТ РЕКЛАМЫ)
+   ========================================================================== */
+.emptySlider {
+  min-height: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px;
+  background-color: #ffffff;
+}
+
+.emptySlider h2 {
+  font-size: 2rem;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin: 0 0 10px 0;
+}
+
+.emptySlider p {
+  font-size: 1rem;
+  color: #666666;
+  margin: 0 0 25px 0;
+}
+
+.buyBtn {
+  display: inline-block;
+  background-color: transparent;
+  color: #111111;
+  border: 2px solid #111111;
+  padding: 10px 24px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  text-decoration: none;
+  box-shadow: 4px 4px 0px #111111;
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.buyBtn:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px #111111;
+}
+
+/* ==========================================================================
+   АДАПТИВНОСТЬ ПОД МОБИЛЬНЫЕ ЭКРАНЫ
+   ========================================================================== */
+@media (max-width: 768px) {
+  .slide {
+    grid-template-columns: 1fr; /* На смартфонах перестраиваем в одну колонку */
+  }
+  
+  .imageWrap {
+    aspect-ratio: 16 / 9; /* Задаем фиксированную пропорцию для картинки сверху */
+    border-right: none;
+    border-bottom: 2px solid #111111;
+  }
+  
+  .info {
+    padding: 20px;
+  }
+  
+  .title {
+    font-size: 1.8rem;
+  }
+  
+  .navLeft, .navRight {
+    top: 25%; /* Сдвигаем стрелки на уровень картинки */
+  }
+  
+  .dots {
+    bottom: inherit;
+    top: calc(25% + 50px); /* Полоски навигации поверх картинки */
+    right: 20px;
+  }
+}

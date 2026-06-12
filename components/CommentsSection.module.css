@@ -1,0 +1,269 @@
+/* components/CommentsSection.module.css */
+.comments {
+  margin-top: 20px;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  color: var(--accent);
+  margin-bottom: 14px;
+  font-family: "Montserrat", sans-serif;
+}
+
+.commentForm {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.postSelect {
+  width: 100%;
+  max-width: 420px;
+  padding: 10px 14px;
+  border: 2px solid var(--border-soft);
+  border-radius: 10px;
+  background: var(--bg-elevated);
+  color: var(--text-main);
+  font-size: 13px;
+}
+
+.commentMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.commentPost {
+  font-size: 12px;
+  color: #fe4c02;
+  text-decoration: none;
+}
+
+.commentPost:hover {
+  text-decoration: underline;
+}
+
+.commentInput {
+  display: flex;
+  gap: 8px;
+}
+
+.input {
+  flex: 1;
+  padding: 10px 14px;
+  border: 3px solid #FF840E;
+  border-radius: 50px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 13px;
+  outline: none;
+  background: var(--bg-elevated);
+  color: var(--text-main);
+}
+
+.input:disabled {
+  background: var(--border-soft);
+}
+
+.sendBtn {
+  width: 44px;
+  height: 44px;
+  border: 3px solid #FF840E;
+  border-radius: 50%;
+  background: #FFDB00;
+  color: #0121B2;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.sendBtn:hover {
+  background: #FF840E;
+  color: #FFF;
+}
+
+.sendBtn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.commentWrapper {
+  margin-bottom: 8px;
+}
+
+.commentItem {
+  background: #FFF;
+  border: 2px solid #FFDB00;
+  border-radius: 12px;
+  padding: 12px;
+  margin-bottom: 8px;
+}
+
+.commentHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.commentUser {
+  font-weight: 500;
+  color: #0121B2;
+  text-decoration: none;
+  font-family: "Montserrat", sans-serif;
+  font-size: 13px;
+}
+
+.commentUser:hover {
+  text-decoration: underline;
+}
+
+.commentDate {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.commentContent {
+  font-size: 13px;
+  color: var(--text-main);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.replyBtn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 8px;
+  padding: 4px 10px;
+  border: 2px solid #FF840E;
+  border-radius: 50px;
+  background: transparent;
+  color: #FF840E;
+  cursor: pointer;
+  font-family: "Montserrat", sans-serif;
+  font-size: 11px;
+}
+
+.replyBtn:hover {
+  background: #FF840E;
+  color: #FFF;
+}
+
+.replyInput {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.replyInput .input {
+  padding: 8px 12px;
+  font-size: 12px;
+}
+
+.replyInput .sendBtn {
+  width: 36px;
+  height: 36px;
+}
+
+.empty {
+  color: #999;
+  font-size: 13px;
+  text-align: center;
+  padding: 20px;
+}
+
+.loading {
+  color: #999;
+  font-size: 13px;
+  text-align: center;
+  padding: 20px;
+}
+
+.profileVariant .title {
+  color: var(--text-main);
+}
+
+.profileVariant .commentItem {
+  background: var(--bg-elevated);
+  border-color: var(--border-soft);
+}
+
+.profileVariant .commentContent {
+  color: var(--text-muted);
+}
+
+.profileVariant .commentUser {
+  color: var(--accent);
+}
+
+.profileVariant .input {
+  background: var(--bg-elevated);
+  border-color: var(--border-soft);
+  color: var(--text-main);
+}
+
+.profileVariant .sendBtn {
+  background: #fe4c02;
+  border-color: #fe4c02;
+  color: var(--accent-text);
+}
+
+.profileVariant .replyBtn {
+  border-color: var(--border-soft);
+  color: var(--text-muted);
+}
+
+.profileVariant .replyBtn:hover {
+  background: var(--bg-elevated);
+  color: var(--text-main);
+}
+
+.profileVariant .empty,
+.profileVariant .loading {
+  color: var(--text-muted);
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border-soft);
+}
+
+.pageButton {
+  padding: 6px 10px;
+  background: transparent;
+  border: 1px solid var(--border-soft);
+  border-radius: 6px;
+  color: var(--text-main);
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pageButton:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.pageButton:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.pageInfo {
+  font-size: 14px;
+  color: var(--text-muted);
+}

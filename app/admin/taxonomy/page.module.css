@@ -1,0 +1,397 @@
+/* ==========================================================================
+   АДМИН-ПАНЕЛЬ - УПРАВЛЕНИЕ ЖАНРАМИ И ТЕГАМИ
+   ========================================================================== */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* ==========================================================================
+   ЗАГОЛОВОК СТРАНИЦЫ
+   ========================================================================== */
+.header {
+  padding-bottom: 16px;
+  border-bottom: 2px solid var(--border-black);
+}
+
+.title {
+  font-family: "Crazy", "Montserrat", sans-serif;
+  font-size: 1.6rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+  margin: 0 0 8px 0;
+  color: var(--text-main);
+}
+
+.subtitle {
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ==========================================================================
+   СЕТКА КАРТОЧЕК
+   ========================================================================== */
+.taxGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+}
+
+/* ==========================================================================
+   КАРТОЧКА
+   ========================================================================== */
+.taxCard {
+  background-color: var(--bg-color);
+  border: 2px solid var(--border-black);
+  box-shadow: var(--shadow-black);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 20px;
+  border-bottom: 2px solid var(--border-black);
+  background-color: var(--bg-paper);
+}
+
+.cardTitle {
+  font-family: "Crazy", "Montserrat", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+  margin: 0;
+  color: var(--text-main);
+}
+
+.cardCount {
+  background-color: var(--bg-color);
+  border: 1px solid var(--border-black);
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+/* ==========================================================================
+   ФОРМА ДОБАВЛЕНИЯ
+   ========================================================================== */
+.taxAdd {
+  display: flex;
+  gap: 12px;
+  padding: 20px;
+  border-bottom: 1px solid var(--border-black);
+}
+
+.taxInput {
+  flex: 1;
+  padding: 10px 14px;
+  background-color: var(--bg-paper);
+  border: 2px solid var(--border-black);
+  border-radius: 0;
+  color: var(--text-main);
+  font-size: 0.85rem;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.taxInput:focus {
+  border-color: var(--accent);
+  background-color: var(--bg-white);
+  box-shadow: 3px 3px 0px var(--accent);
+}
+
+.taxInput::placeholder {
+  color: var(--text-muted);
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  letter-spacing: 0.5px;
+}
+
+.addBtn {
+  padding: 10px 20px;
+  background-color: var(--border-black);
+  color: var(--bg-elevated);
+  border: 2px solid var(--border-black);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: "Montserrat", sans-serif;
+  white-space: nowrap;
+}
+
+.addBtn:hover:not(:disabled) {
+  background-color: var(--accent);
+  color: var(--bg-white);
+  border-color: var(--accent);
+}
+
+.addBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Темная тема для кнопки */
+html[data-theme="dark"] .addBtn {
+  background-color: transparent;
+  color: var(--text-main);
+  border-color: var(--border-black);
+}
+
+html[data-theme="dark"] .addBtn:hover:not(:disabled) {
+  background-color: var(--accent);
+  color: #111111;
+  border-color: var(--accent);
+}
+
+/* ==========================================================================
+   СПИСОК ЭЛЕМЕНТОВ
+   ========================================================================== */
+.taxListWrapper {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.taxList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.taxItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  border-bottom: 1px solid var(--border-black);
+  transition: all 0.2s ease;
+}
+
+.taxItem:hover {
+  background-color: var(--bg-paper);
+}
+
+.taxName {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-main);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.taxDel {
+  background: transparent;
+  border: 1px solid var(--border-black);
+  color: var(--text-muted);
+  width: 28px;
+  height: 28px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.taxDel:hover {
+  background-color: var(--accent);
+  border-color: var(--accent);
+  color: var(--bg-white);
+}
+
+/* ==========================================================================
+   ПУСТЫЕ СОСТОЯНИЯ
+   ========================================================================== */
+.taxEmpty {
+  text-align: center;
+  padding: 40px 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0;
+}
+
+.empty {
+  text-align: center;
+  padding: 60px 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background-color: var(--bg-paper);
+  border: 1px dashed var(--border-black);
+}
+
+/* ==========================================================================
+   СТИЛИЗАЦИЯ СКРОЛЛБАРА
+   ========================================================================== */
+.taxListWrapper::-webkit-scrollbar {
+  width: 6px;
+}
+
+.taxListWrapper::-webkit-scrollbar-track {
+  background: var(--bg-paper);
+}
+
+.taxListWrapper::-webkit-scrollbar-thumb {
+  background: var(--border-black);
+}
+
+.taxListWrapper::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+/* ==========================================================================
+   АДАПТИВНОСТЬ
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .taxGrid {
+    gap: 24px;
+  }
+
+  .title {
+    font-size: 1.4rem;
+  }
+
+  .cardTitle {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    gap: 20px;
+  }
+
+  .title {
+    font-size: 1.2rem;
+  }
+
+  .subtitle {
+    font-size: 0.7rem;
+  }
+
+  .taxGrid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .cardHeader {
+    padding: 14px 16px;
+  }
+
+  .cardTitle {
+    font-size: 1rem;
+  }
+
+  .taxAdd {
+    padding: 16px;
+    gap: 8px;
+    flex-direction: column;
+  }
+
+  .addBtn {
+    width: 100%;
+    padding: 8px 16px;
+  }
+
+  .taxInput {
+    padding: 8px 12px;
+    font-size: 0.8rem;
+  }
+
+  .taxItem {
+    padding: 10px 16px;
+  }
+
+  .taxName {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding-bottom: 12px;
+  }
+
+  .title {
+    font-size: 1rem;
+  }
+
+  .subtitle {
+    font-size: 0.6rem;
+  }
+
+  .cardHeader {
+    padding: 12px 14px;
+  }
+
+  .cardTitle {
+    font-size: 0.9rem;
+  }
+
+  .cardCount {
+    font-size: 0.65rem;
+    padding: 3px 8px;
+  }
+
+  .taxAdd {
+    padding: 12px;
+  }
+
+  .taxInput {
+    padding: 8px 10px;
+    font-size: 0.75rem;
+  }
+
+  .taxInput::placeholder {
+    font-size: 0.6rem;
+  }
+
+  .addBtn {
+    padding: 8px 12px;
+    font-size: 0.65rem;
+  }
+
+  .taxItem {
+    padding: 8px 12px;
+  }
+
+  .taxName {
+    font-size: 0.7rem;
+  }
+
+  .taxDel {
+    width: 24px;
+    height: 24px;
+    font-size: 0.9rem;
+  }
+
+  .taxEmpty {
+    padding: 30px 16px;
+    font-size: 0.7rem;
+  }
+
+  .empty {
+    padding: 40px 16px;
+    font-size: 0.7rem;
+  }
+}

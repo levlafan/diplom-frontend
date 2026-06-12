@@ -1,0 +1,138 @@
+/* Shared modal / panel surfaces */
+.eiry-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: var(--overlay-bg);
+  display: grid;
+  place-items: center;
+  padding: 18px;
+}
+
+.eiry-modal {
+  width: min(760px, 100%);
+  max-height: 92vh;
+  overflow: auto;
+  background: var(--card-bg);
+  color: var(--text-main);
+  border: 2px solid var(--border-soft);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-soft);
+  padding: 22px;
+  display: grid;
+  gap: 14px;
+}
+
+.eiry-modal--narrow {
+  width: min(520px, 100%);
+  max-height: 82vh;
+}
+
+.eiry-modal--wide {
+  width: min(640px, 100%);
+}
+
+.eiry-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.eiry-modal-header h2,
+.eiry-modal-header h3 {
+  margin: 0;
+  font-size: 1.15rem;
+  color: var(--text-main);
+}
+
+.eiry-modal-close {
+  border: 1px solid var(--border-soft);
+  background: var(--bg-elevated);
+  color: var(--text-muted);
+  border-radius: 10px;
+  width: 38px;
+  height: 38px;
+  font-size: 1.35rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.eiry-modal-close:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.eiry-panel {
+  max-width: 480px;
+  width: 100%;
+  background: var(--card-bg);
+  color: var(--text-main);
+  border: 2px solid var(--border-soft);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-soft);
+  padding: 1.75rem;
+}
+
+.eiry-panel h1 {
+  margin: 0 0 1rem;
+  font-size: 1.5rem;
+}
+
+.eiry-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.eiry-input {
+  padding: 0.55rem 0.75rem;
+  border: 2px solid var(--border-soft);
+  border-radius: 10px;
+  background: var(--bg-elevated);
+  color: var(--text-main);
+  font-family: inherit;
+  font-size: 0.95rem;
+}
+
+.eiry-input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.eiry-btn-primary {
+  padding: 0.55rem 1.1rem;
+  background: var(--accent);
+  color: var(--accent-text);
+  border: 2px solid var(--border-soft);
+  border-radius: 10px;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.eiry-btn-primary:hover {
+  filter: brightness(1.05);
+}
+
+.eiry-btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.eiry-link {
+  color: var(--accent);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.eiry-link:hover {
+  text-decoration: underline;
+}

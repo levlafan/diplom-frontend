@@ -1,0 +1,149 @@
+.filter {
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.searchRow {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.searchIcon {
+  position: absolute;
+  left: 14px;
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 12px 14px 12px 42px;
+  border: 2px solid var(--border-soft);
+  border-radius: 12px;
+  background: var(--bg-elevated);
+  color: var(--text-main);
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.searchInput:focus {
+  border-color: #fe4c02;
+}
+
+.controlsRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: flex-end;
+}
+
+.genreSelect {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 200px;
+  flex: 1;
+  max-width: 320px;
+}
+
+.genreSelect > span {
+  font-size: 12px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.selectWrap {
+  position: relative;
+}
+
+.selectWrap select {
+  width: 100%;
+  appearance: none;
+  padding: 10px 36px 10px 14px;
+  border: 2px solid var(--border-soft);
+  border-radius: 10px;
+  background: var(--bg-elevated);
+  color: var(--text-main);
+  font-size: 14px;
+  cursor: pointer;
+  outline: none;
+}
+
+.selectWrap select:focus {
+  border-color: #fe4c02;
+}
+
+.selectIcon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+.tagSection {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.tagLabel {
+  font-size: 12px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.tagList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tagBtn {
+  padding: 6px 14px;
+  border: 1px solid var(--border-soft);
+  border-radius: 20px;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.tagBtn:hover {
+  border-color: #fe4c02;
+  color: var(--text-main);
+}
+
+.tagActive {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-text);
+}
+
+.clearTags {
+  align-self: flex-start;
+  padding: 0;
+  border: none;
+  background: none;
+  color: #fe4c02;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.clearTags:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 640px) {
+  .genreSelect {
+    max-width: none;
+  }
+}

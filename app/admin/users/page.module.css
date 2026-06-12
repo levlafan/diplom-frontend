@@ -1,0 +1,453 @@
+/* ==========================================================================
+   АДМИН-ПАНЕЛЬ - УПРАВЛЕНИЕ ПОЛЬЗОВАТЕЛЯМИ
+   ========================================================================== */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ==========================================================================
+   ЗАГОЛОВОК СТРАНИЦЫ
+   ========================================================================== */
+.header {
+  padding-bottom: 16px;
+  border-bottom: 2px solid var(--border-black);
+}
+
+.title {
+  font-family: "Crazy", "Montserrat", sans-serif;
+  font-size: 1.6rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+  margin: 0 0 8px 0;
+  color: var(--text-main);
+}
+
+.subtitle {
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ==========================================================================
+   ПОИСК
+   ========================================================================== */
+.searchSection {
+  margin-bottom: 8px;
+}
+
+.searchInput {
+  width: 100%;
+  max-width: 400px;
+  padding: 12px 16px;
+  background-color: var(--bg-paper);
+  border: 2px solid var(--border-black);
+  border-radius: 0;
+  color: var(--text-main);
+  font-size: 0.85rem;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.searchInput:focus {
+  border-color: var(--accent);
+  background-color: var(--bg-white);
+  box-shadow: 3px 3px 0px var(--accent);
+}
+
+.searchInput::placeholder {
+  color: var(--text-muted);
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  letter-spacing: 0.5px;
+}
+/* ==========================================================================
+   СТРОКА ФИЛЬТРОВ
+   ========================================================================== */
+.filtersRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.searchSection {
+  flex: 1;
+  min-width: 200px;
+}
+
+/* ==========================================================================
+   ФИЛЬТР ПО СТАТУСУ
+   ========================================================================== */
+.statusFilters {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.statusBtn {
+  padding: 8px 16px;
+  background-color: var(--bg-paper);
+  border: 2px solid var(--border-black);
+  color: var(--text-muted);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: "Montserrat", sans-serif;
+}
+
+.statusBtn:hover {
+  border-color: var(--accent);
+  color: var(--text-main);
+}
+
+.statusActive {
+  background-color: var(--border-black);
+  color: var(--bg-elevated);
+  border-color: var(--border-black);
+}
+
+.statusActive:hover {
+  background-color: var(--accent);
+  color: var(--bg-white);
+  border-color: var(--accent);
+}
+
+/* Темная тема */
+html[data-theme="dark"] .statusActive {
+  background-color: transparent;
+  color: var(--text-main);
+  border-color: var(--accent);
+}
+
+html[data-theme="dark"] .statusActive:hover {
+  background-color: var(--accent);
+  color: #111111;
+}
+
+/* ==========================================================================
+   АДАПТИВНОСТЬ ДЛЯ ФИЛЬТРОВ
+   ========================================================================== */
+@media (max-width: 768px) {
+  .filtersRow {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  
+  .statusFilters {
+    justify-content: center;
+  }
+  
+  .statusBtn {
+    padding: 6px 12px;
+    font-size: 0.65rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .statusBtn {
+    padding: 5px 10px;
+    font-size: 0.6rem;
+  }
+}
+/* ==========================================================================
+   ТАБЛИЦА
+   ========================================================================== */
+.tableWrapper {
+  overflow-x: auto;
+  background-color: var(--bg-color);
+  border: 2px solid var(--border-black);
+  box-shadow: var(--shadow-black);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8rem;
+  font-family: "Montserrat", sans-serif;
+}
+
+.table th,
+.table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border-black);
+  text-align: left;
+  color: var(--text-main);
+}
+
+.table th {
+  background-color: var(--bg-paper);
+  color: var(--text-muted);
+  font-weight: 600;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.table tr:last-child td {
+  border-bottom: none;
+}
+
+.table tr:hover td {
+  background-color: var(--bg-paper);
+}
+
+/* ==========================================================================
+   ЯЧЕЙКИ ТАБЛИЦЫ
+   ========================================================================== */
+.userId {
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.userNameText {
+  font-weight: 500;
+}
+
+.userEmail {
+  color: var(--text-muted);
+}
+
+.userPosts {
+  text-align: center;
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   БЕЙДЖИ СТАТУСОВ
+   ========================================================================== */
+.badge {
+  display: inline-block;
+  padding: 4px 10px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border: 1px solid transparent;
+}
+
+.badgeActive {
+  background-color: rgba(46, 125, 50, 0.15);
+  border-color: #2e7d32;
+  color: #2e7d32;
+}
+
+.badgeBanned {
+  background-color: rgba(198, 40, 40, 0.15);
+  border-color: #c62828;
+  color: #c62828;
+}
+
+/* ==========================================================================
+   КНОПКИ ДЕЙСТВИЙ
+   ========================================================================== */
+.btn {
+  padding: 6px 14px;
+  background-color: var(--bg-paper);
+  border: 1px solid var(--border-black);
+  color: var(--text-main);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: "Montserrat", sans-serif;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btnBan {
+  background-color: transparent;
+  border-color: #c62828;
+  color: #c62828;
+}
+
+.btnBan:hover {
+  background-color: #c62828;
+  color: var(--bg-white);
+  border-color: #c62828;
+}
+
+.btnUnban {
+  background-color: transparent;
+  border-color: #2e7d32;
+  color: #2e7d32;
+}
+
+.btnUnban:hover {
+  background-color: #2e7d32;
+  color: var(--bg-white);
+  border-color: #2e7d32;
+}
+
+/* ==========================================================================
+   ПУСТЫЕ СОСТОЯНИЯ
+   ========================================================================== */
+.empty {
+  text-align: center;
+  padding: 60px 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background-color: var(--bg-paper);
+  border: 1px dashed var(--border-black);
+}
+
+/* ==========================================================================
+   ТЕМНАЯ ТЕМА
+   ========================================================================== */
+html[data-theme="dark"] .btnBan {
+  border-color: #f44336;
+  color: #f44336;
+}
+
+html[data-theme="dark"] .btnBan:hover {
+  background-color: #f44336;
+  color: #111111;
+}
+
+html[data-theme="dark"] .btnUnban {
+  border-color: #4caf50;
+  color: #4caf50;
+}
+
+html[data-theme="dark"] .btnUnban:hover {
+  background-color: #4caf50;
+  color: #111111;
+}
+
+/* ==========================================================================
+   АДАПТИВНОСТЬ
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .container {
+    gap: 20px;
+  }
+
+  .title {
+    font-size: 1.4rem;
+  }
+
+  .table th,
+  .table td {
+    padding: 12px 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    gap: 16px;
+  }
+
+  .title {
+    font-size: 1.2rem;
+  }
+
+  .subtitle {
+    font-size: 0.7rem;
+  }
+
+  .searchInput {
+    padding: 10px 14px;
+    font-size: 0.8rem;
+    max-width: 100%;
+  }
+
+  .table th,
+  .table td {
+    padding: 10px 12px;
+    font-size: 0.7rem;
+  }
+
+  .table th {
+    font-size: 0.6rem;
+  }
+
+  .badge {
+    padding: 3px 8px;
+    font-size: 0.55rem;
+  }
+
+  .btn {
+    padding: 4px 10px;
+    font-size: 0.6rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .tableWrapper {
+    border-width: 1px;
+  }
+
+  .table th,
+  .table td {
+    padding: 8px 10px;
+    font-size: 0.65rem;
+  }
+
+  .btn {
+    padding: 3px 8px;
+    font-size: 0.55rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding-bottom: 12px;
+  }
+
+  .title {
+    font-size: 1rem;
+  }
+
+  .subtitle {
+    font-size: 0.6rem;
+  }
+
+  .searchInput {
+    padding: 8px 12px;
+    font-size: 0.7rem;
+  }
+
+  .searchInput::placeholder {
+    font-size: 0.6rem;
+  }
+
+  .table th,
+  .table td {
+    padding: 6px 8px;
+    font-size: 0.6rem;
+  }
+
+  .badge {
+    padding: 2px 6px;
+    font-size: 0.5rem;
+  }
+
+  .btn {
+    padding: 2px 6px;
+    font-size: 0.5rem;
+  }
+
+  .empty {
+    padding: 40px 16px;
+    font-size: 0.7rem;
+  }
+}

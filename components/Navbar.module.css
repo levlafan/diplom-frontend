@@ -1,0 +1,632 @@
+/* Navbar.module.css */
+
+.navbar {
+  width: 100%;
+  background-color: #111111;
+  color: #ffffff;
+  border-bottom: 2px solid #ffffff;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.navbarLight {
+  background-color: #f4f4f4;
+  color: #111111;
+  border-bottom: 2px solid #111111;
+}
+
+.inner {
+  max-width: 100%;
+  margin: 0 110px;
+  padding: 0 20px;
+  min-height: 55px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.logo {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.logoText {
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: -1px;
+  transform: scaleY(1.1);
+  padding: 2px 14px;
+  background-color: transparent;
+  transition: all 0.2s ease;
+}
+
+.logo:hover .logoText {
+  background-color: var(--accent, #FE4C02);
+  color: #f4f4f4;
+}
+
+.navLinks {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  flex-grow: 1;
+  margin-left: 25px;
+}
+
+.navLink {
+  color: inherit;
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.navLink:hover {
+  opacity: 0.7;
+}
+
+.navLink::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: currentColor;
+  transition: width 0.2s ease;
+}
+
+.navLink:hover::after {
+  width: 100%;
+}
+
+.authArea {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+/* Кнопка поиска */
+.searchContainer {
+  position: relative;
+}
+
+.searchButton {
+  background: transparent;
+  border: 1px solid currentColor;
+  color: inherit;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.searchButton:hover {
+  background-color: var(--accent, #FE4C02);
+  color: #111111;
+}
+
+.searchDropdown {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  width: 280px;
+  background-color: #111111;
+  border: 2px solid #ffffff;
+  z-index: 1050;
+  display: flex;
+  flex-direction: column;
+}
+
+.navbarLight .searchDropdown {
+  background-color: #ffffff;
+  border: 2px solid #111111;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 12px 16px;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-family: inherit;
+  outline: none;
+}
+
+.navbarLight .searchInput {
+  color: #111111;
+  border-bottom-color: rgba(0, 0, 0, 0.2);
+}
+
+.searchInput::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  font-size: 0.7rem;
+}
+
+.navbarLight .searchInput::placeholder {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.searchResults {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.searchLoading,
+.searchEmpty {
+  padding: 16px;
+  text-align: center;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.navbarLight .searchLoading,
+.navbarLight .searchEmpty {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.searchResultItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+}
+
+.searchResultItem:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.navbarLight .searchResultItem {
+  border-bottom-color: rgba(0, 0, 0, 0.1);
+}
+
+.navbarLight .searchResultItem:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.searchResultAvatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.searchResultAvatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.searchResultInfo {
+  flex: 1;
+}
+
+.searchResultName {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #ffffff;
+}
+
+.navbarLight .searchResultName {
+  color: #111111;
+}
+
+.themeBtnDesktop,
+.actionsButton {
+  background: transparent;
+  border: 1px solid currentColor;
+  color: inherit;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.themeBtnDesktop:hover,
+.actionsButton:hover {
+  background-color: var(--accent, #FE4C02);
+  color: #111111;
+}
+
+.actionsDropdown {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  background-color: #111111;
+  border: 2px solid #ffffff;
+  display: flex;
+  flex-direction: column;
+  min-width: 220px;
+  box-shadow: 6px 6px 0px currentColor;
+  z-index: 1050;
+}
+
+.navbarLight .dropdownMenu {
+  background-color: #ffffff;
+  border: 2px solid #111111;
+}
+
+.dropdownMenu button {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  padding: 12px 16px;
+  text-align: left;
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  transition: all 0.2s ease;
+}
+
+.navbarLight .dropdownMenu button {
+  color: #111111;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.dropdownMenu button:last-child {
+  border-bottom: none;
+}
+
+.dropdownMenu button:hover {
+  background-color: #ffffff;
+  color: #111111;
+}
+
+.navbarLight .dropdownMenu button:hover {
+  background-color: #111111;
+  color: #ffffff;
+}
+
+.walletDesktop {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px dashed currentColor;
+  padding: 4px 10px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: inherit;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.coinIcon {
+  animation: pulse 2s infinite ease-in-out;
+}
+
+.userName {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.userName:hover {
+  border-bottom: 1px solid currentColor;
+}
+
+.authLink {
+  color: inherit;
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.authButton {
+  background-color: transparent;
+  color: inherit;
+  border: 2px solid currentColor;
+  padding: 8px 16px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.authButton:hover {
+  background-color: var(--accent, #FE4C02);
+  color: #ffffff;
+  border-color: var(--accent, #FE4C02);
+}
+
+.navbarLight .authButton {
+  border-color: #111111;
+  color: #111111;
+}
+
+.navbarLight .authButton:hover {
+  background-color: #111111;
+  color: #ffffff;
+}
+
+.burgerButton {
+  display: none;
+  background: transparent;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+}
+
+.navLinksMobile {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 100%;
+  max-width: 320px;
+  height: 100vh;
+  background-color: #111111;
+  border-left: 2px solid #ffffff;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  z-index: 1100;
+  transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.navbarLight .navLinksMobile {
+  background-color: #ffffff;
+  border-left: 2px solid #111111;
+}
+
+.navLinksMobileOpen {
+  right: 0;
+}
+
+.mobileHeader {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.closeButton {
+  background: transparent;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.navLinkMobile {
+  color: inherit;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.2);
+}
+
+.navbarLight .navLinkMobile {
+  border-bottom: 1px dashed #111111;
+}
+
+.mobileDivider {
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.2);
+  margin: 10px 0;
+}
+
+.navbarLight .mobileDivider {
+  background-color: #111111;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1050;
+  display: none;
+}
+
+.overlayOpen {
+  display: block;
+}
+/* Кнопка выхода в мобильном меню */
+.logoutBtn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 12px 0;
+  margin-top: 10px;
+  background: transparent;
+  border: 2px solid var(--accent, #FE4C02);
+  color: var(--accent, #FE4C02);
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  justify-content: center;
+}
+
+.logoutBtn:hover {
+  background-color: var(--accent, #FE4C02);
+  color: #111111;
+}
+
+.navbarLight .logoutBtn {
+  border-color: #111111;
+  color: #111111;
+}
+
+.navbarLight .logoutBtn:hover {
+  background-color: #111111;
+  color: #ffffff;
+}
+/* ==========================================================================
+   АДАПТИВНОСТЬ
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .inner {
+    margin: 0 20px;
+    justify-content: space-between;
+  }
+
+  /* Скрываем десктопную навигацию */
+  .navLinks {
+    display: none !important;
+  }
+
+  /* Скрываем лишние кнопки в адаптиве */
+  .themeBtnDesktop,
+  .userName,
+  .authLink,
+  .authButton:not(:last-child) {
+    display: none !important;
+  }
+
+  /* Логотип остаётся, но с отступом от кнопок */
+  .logo {
+    margin-right: auto;
+  }
+
+  /* Показываем бургер */
+  .burgerButton {
+    display: flex !important;
+  }
+
+  /* Мобильная версия кошелька — только иконка */
+  .walletDesktop {
+    display: flex !important;
+    border: 1px solid currentColor;
+    padding: 6px 8px;
+    font-size: 0;
+    gap: 0;
+  }
+
+  .walletDesktop .coinIcon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .walletDesktop span {
+    display: none;
+  }
+
+  /* Кнопки в адаптиве */
+  .authArea {
+    gap: 8px;
+  }
+
+  .searchButton,
+  .actionsButton {
+    width: 34px;
+    height: 34px;
+  }
+}
+
+/* Для очень маленьких экранов */
+@media (max-width: 480px) {
+  .inner {
+    margin: 0 12px;
+    padding: 0;
+  }
+
+  .logoText {
+    font-size: 1.2rem;
+    padding: 2px 8px;
+  }
+
+  .authArea {
+    gap: 6px;
+  }
+
+  .searchButton,
+  .actionsButton {
+    width: 30px;
+    height: 30px;
+  }
+
+  .searchButton svg,
+  .actionsButton svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .authButton {
+    padding: 5px 10px;
+    font-size: 0.65rem;
+  }
+
+  .walletDesktop {
+    padding: 4px 6px;
+  }
+
+  .walletDesktop .coinIcon {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}

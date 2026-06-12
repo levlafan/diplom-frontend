@@ -1,0 +1,580 @@
+/* ==========================================================================
+   ОСНОВНОЙ КОНТЕЙНЕР КАЛЕНДАРЯ
+   ========================================================================== */
+.wrap {
+  background-color: var(--bg-color);
+  border: 2px solid var(--border-black);
+  box-shadow: var(--shadow-black);
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  font-family: "Montserrat", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.2s ease;
+}
+
+/* Компактный режим */
+.compact {
+  padding: 20px;
+}
+
+.title {
+  font-family: "Crazy", "Montserrat", sans-serif;
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin: 0;
+  letter-spacing: -0.5px;
+  color: var(--text-main);
+  border-bottom: 2px solid var(--border-black);
+  padding-bottom: 10px;
+}
+
+.sub {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--accent);
+  margin: 0;
+}
+
+/* ==========================================================================
+   СЕТКА ДНЕЙ
+   ========================================================================== */
+.days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+  width: 100%;
+  margin: 5px 0;
+}
+
+/* Карточка отдельного дня */
+.day {
+  background-color: var(--bg-paper);
+  border: 1px solid var(--border-black);
+  padding: 10px 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.dayNum {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.coin {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+/* ПРОЙДЕННЫЙ ДЕНЬ */
+.dayDone {
+  background-color: var(--accent);
+  border-color: var(--border-black);
+}
+
+.dayDone .dayNum {
+  color: var(--bg-white);
+  opacity: 0.8;
+}
+
+.dayDone .coin {
+  color: var(--bg-white);
+}
+
+/* Особый 7-й день (Подарок) */
+.dayGift {
+  border-width: 2px;
+  border-style: dashed;
+}
+
+/* ==========================================================================
+   КНОПКА "ЗАБРАТЬ НАГРАДУ"
+   ========================================================================== */
+.claimBtn {
+  background-color: var(--border-black);
+  color: var(--bg-elevated);
+  border: 2px solid var(--border-black);
+  padding: 12px 24px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 4px 4px 0px var(--accent);
+  width: fit-content;
+  font-family: "Montserrat", sans-serif;
+}
+
+.claimBtn:hover:not(:disabled) {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px var(--bg-white);
+  background-color: var(--accent);
+  color: var(--bg-white);
+  border-color: var(--bg-white);
+}
+
+.claimBtn:active:not(:disabled) {
+  transform: translate(2px, 2px);
+  box-shadow: 0px 0px 0px var(--bg-white);
+}
+
+.claimBtn:disabled {
+  background-color: var(--bg-paper);
+  border-color: var(--border-black);
+  color: var(--text-muted);
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+/* Темная тема */
+html[data-theme="dark"] .claimBtn {
+  background-color: transparent;
+  color: var(--text-main);
+  border-color: var(--border-black);
+}
+
+html[data-theme="dark"] .claimBtn:hover:not(:disabled) {
+  background-color: var(--accent);
+  color: #111111;
+  border-color: var(--bg-white);
+}
+
+/* ==========================================================================
+   СООБЩЕНИЯ
+   ========================================================================== */
+.msg {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--accent);
+  background-color: var(--bg-paper);
+  border: 1px solid var(--border-black);
+  padding: 8px 12px;
+  margin: 0;
+}
+
+.hint {
+  font-size: 0.65rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  border-top: 1px dashed var(--border-black);
+  padding-top: 12px;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* ==========================================================================
+   МОДАЛЬНОЕ ОКНО
+   ========================================================================== */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 20px;
+}
+
+.modalContent {
+  background-color: var(--bg-color);
+  border: 2px solid var(--border-black);
+  box-shadow: var(--shadow-black);
+  padding: 30px;
+  max-width: 400px;
+  width: 100%;
+  position: relative;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.modalClose {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  cursor: pointer;
+  line-height: 1;
+  transition: color 0.2s ease;
+}
+
+.modalClose:hover {
+  color: var(--accent);
+}
+
+.modalIcon {
+  font-size: 2.5rem;
+  margin-bottom: 12px;
+}
+
+.modalTitle {
+  font-family: "Crazy", "Montserrat", sans-serif;
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin: 0 0 10px 0;
+  color: var(--text-main);
+  letter-spacing: -0.5px;
+}
+
+.modalText {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  margin: 0 0 20px 0;
+}
+
+.modalReward {
+  background-color: var(--bg-paper);
+  border: 1px dashed var(--border-black);
+  padding: 12px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 25px;
+  color: var(--text-main);
+}
+
+.rewardIcon {
+  font-size: 1.2rem;
+}
+
+.modalButtons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.modalClaimBtn {
+  background-color: var(--border-black);
+  color: var(--bg-elevated);
+  border: 2px solid var(--border-black);
+  padding: 10px 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: "Montserrat", sans-serif;
+  box-shadow: 3px 3px 0px var(--accent);
+}
+
+.modalClaimBtn:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0px var(--accent);
+  background-color: var(--accent);
+  color: var(--bg-white);
+  border-color: var(--accent);
+}
+
+.modalLaterBtn {
+  background-color: transparent;
+  color: var(--text-main);
+  border: 2px solid var(--border-black);
+  padding: 10px 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: "Montserrat", sans-serif;
+}
+
+.modalLaterBtn:hover {
+  background-color: var(--border-black);
+  color: var(--bg-elevated);
+}
+
+/* Темная тема для модальных кнопок */
+html[data-theme="dark"] .modalClaimBtn {
+  background-color: transparent;
+  color: var(--text-main);
+  border-color: var(--border-black);
+}
+
+html[data-theme="dark"] .modalClaimBtn:hover {
+  background-color: var(--accent);
+  color: #111111;
+  border-color: var(--accent);
+}
+
+/* ==========================================================================
+   АДАПТИВНОСТЬ
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .wrap {
+    padding: 25px;
+  }
+
+  .title {
+    font-size: 1.2rem;
+  }
+
+  .days {
+    gap: 6px;
+  }
+
+  .day {
+    padding: 8px 3px;
+  }
+
+  .dayNum {
+    font-size: 0.65rem;
+  }
+
+  .coin {
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .wrap {
+    padding: 20px;
+    gap: 15px;
+  }
+
+  .compact {
+    padding: 15px;
+  }
+
+  .title {
+    font-size: 1.1rem;
+  }
+
+  .sub {
+    font-size: 0.7rem;
+  }
+
+  .days {
+    gap: 5px;
+  }
+
+  .day {
+    padding: 8px 2px;
+    gap: 4px;
+  }
+
+  .dayNum {
+    font-size: 0.6rem;
+  }
+
+  .coin {
+    font-size: 0.65rem;
+  }
+
+  .claimBtn {
+    padding: 10px 20px;
+    font-size: 0.75rem;
+    width: 100%;
+  }
+
+  .msg {
+    font-size: 0.7rem;
+    padding: 6px 10px;
+  }
+
+  .hint {
+    font-size: 0.6rem;
+  }
+
+  /* Модальное окно */
+  .modalContent {
+    padding: 25px 20px;
+    max-width: 90%;
+  }
+
+  .modalIcon {
+    font-size: 2rem;
+  }
+
+  .modalTitle {
+    font-size: 1.1rem;
+  }
+
+  .modalText {
+    font-size: 0.75rem;
+  }
+
+  .modalReward {
+    padding: 10px;
+    font-size: 0.8rem;
+  }
+
+  .modalButtons {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .modalButtons button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .wrap {
+    padding: 15px;
+    gap: 12px;
+  }
+
+  .compact {
+    padding: 12px;
+  }
+
+  .title {
+    font-size: 1rem;
+  }
+
+  .sub {
+    font-size: 0.65rem;
+  }
+
+  .days {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+  }
+
+  .day {
+    padding: 8px 3px;
+  }
+
+  .dayGift {
+    grid-column: span 2;
+  }
+
+  .dayNum {
+    font-size: 0.6rem;
+  }
+
+  .coin {
+    font-size: 0.7rem;
+  }
+
+  .claimBtn {
+    padding: 10px 16px;
+    font-size: 0.7rem;
+  }
+
+  .msg {
+    font-size: 0.65rem;
+  }
+
+  /* Модальное окно */
+  .modalOverlay {
+    padding: 10px;
+  }
+
+  .modalContent {
+    padding: 20px 15px;
+    max-width: 95%;
+  }
+
+  .modalClose {
+    top: 8px;
+    right: 12px;
+    font-size: 1.3rem;
+  }
+
+  .modalIcon {
+    font-size: 1.8rem;
+  }
+
+  .modalTitle {
+    font-size: 1rem;
+  }
+
+  .modalText {
+    font-size: 0.7rem;
+    margin-bottom: 15px;
+  }
+
+  .modalReward {
+    padding: 8px;
+    font-size: 0.75rem;
+    margin-bottom: 20px;
+  }
+
+  .rewardIcon {
+    font-size: 1rem;
+  }
+
+  .modalClaimBtn,
+  .modalLaterBtn {
+    padding: 8px 16px;
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .wrap {
+    padding: 12px;
+    gap: 10px;
+  }
+
+  .title {
+    font-size: 0.9rem;
+  }
+
+  .days {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+  }
+
+  .day {
+    padding: 6px 2px;
+  }
+
+  .dayGift {
+    grid-column: span 2;
+  }
+
+  .dayNum {
+    font-size: 0.55rem;
+  }
+
+  .coin {
+    font-size: 0.6rem;
+  }
+
+  .claimBtn {
+    padding: 8px 14px;
+    font-size: 0.65rem;
+  }
+}
+
+@media (max-width: 850px) and (orientation: landscape) {
+  .days {
+    grid-template-columns: repeat(7, 1fr);
+  }
+
+  .dayGift {
+    grid-column: span 1;
+  }
+
+  .modalOverlay {
+    align-items: flex-start;
+    overflow-y: auto;
+  }
+
+  .modalContent {
+    margin: 20px auto;
+  }
+}

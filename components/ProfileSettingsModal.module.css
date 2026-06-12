@@ -1,0 +1,440 @@
+/* ==========================================================================
+   ОВЕРЛЕЙ МОДАЛЬНОГО ОКНА
+   ========================================================================== */
+.eiry-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+/* ==========================================================================
+   МОДАЛЬНОЕ ОКНО
+   ========================================================================== */
+.eiry-modal {
+  width: 100%;
+  max-width: 500px;
+  background-color: var(--bg-color);
+  border: 2px solid var(--border-black);
+  box-shadow: var(--shadow-black);
+  display: flex;
+  flex-direction: column;
+  max-height: 90vh;
+  transition: all 0.2s ease;
+}
+
+.eiry-modal--wide {
+  max-width: 560px;
+}
+
+/* ==========================================================================
+   ЗАГОЛОВОК МОДАЛЬНОГО ОКНА
+   ========================================================================== */
+.eiry-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  border-bottom: 2px solid var(--border-black);
+}
+
+.eiry-modal-header h3 {
+  font-family: "Crazy", "Montserrat", sans-serif;
+  font-size: 1.3rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+  margin: 0;
+  color: var(--text-main);
+}
+
+.eiry-modal-close {
+  background: transparent;
+  border: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: var(--text-muted);
+  transition: color 0.2s ease;
+  line-height: 1;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.eiry-modal-close:hover {
+  color: var(--accent);
+}
+
+/* ==========================================================================
+   ТЕЛО МОДАЛЬНОГО ОКНА (ФОРМА)
+   ========================================================================== */
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px;
+  overflow-y: auto;
+}
+
+/* ==========================================================================
+   БЛОК АВАТАРА
+   ========================================================================== */
+.avatarRow {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 16px;
+  background-color: var(--bg-paper);
+  border: 1px solid var(--border-black);
+}
+
+.avatar {
+  width: 72px;
+  height: 72px;
+  object-fit: cover;
+  border: 2px solid var(--border-black);
+  background-color: var(--bg-paper);
+}
+
+.avatarMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.fileButton {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--border-black);
+  color: var(--bg-elevated);
+  border: 2px solid var(--border-black);
+  padding: 8px 16px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: "Montserrat", sans-serif;
+  text-align: center;
+  width: fit-content;
+}
+
+.fileButton:hover {
+  background-color: var(--accent);
+  color: var(--bg-white);
+  border-color: var(--accent);
+}
+
+.fileButton input {
+  position: absolute;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+}
+
+.help {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+/* ==========================================================================
+   ПОЛЯ ВВОДА
+   ========================================================================== */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.field span {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-main);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.field input,
+.field textarea {
+  width: 100%;
+  padding: 12px 14px;
+  background-color: var(--bg-paper);
+  border: 2px solid var(--border-black);
+  border-radius: 0;
+  color: var(--text-main);
+  font-size: 0.85rem;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  outline: none;
+  transition: all 0.2s ease;
+  resize: vertical;
+}
+
+.field input:focus,
+.field textarea:focus {
+  border-color: var(--accent);
+  background-color: var(--bg-white);
+  box-shadow: 3px 3px 0px var(--accent);
+}
+
+.field input:hover:not(:focus),
+.field textarea:hover:not(:focus) {
+  border-color: var(--accent);
+}
+
+.field textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* ==========================================================================
+   ФУТЕР С КНОПКАМИ
+   ========================================================================== */
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.secondary {
+  background-color: transparent;
+  color: var(--text-main);
+  border: 2px solid var(--border-black);
+  padding: 10px 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: "Montserrat", sans-serif;
+}
+
+.secondary:hover {
+  background-color: var(--border-black);
+  color: var(--bg-elevated);
+}
+
+.primary {
+  background-color: var(--border-black);
+  color: var(--bg-elevated);
+  border: 2px solid var(--border-black);
+  padding: 10px 24px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: "Montserrat", sans-serif;
+  box-shadow: 3px 3px 0px var(--accent);
+}
+
+.primary:hover:not(:disabled) {
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0px var(--accent);
+  background-color: var(--accent);
+  color: var(--bg-white);
+  border-color: var(--accent);
+}
+
+.primary:active:not(:disabled) {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0px var(--accent);
+}
+
+.primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Темная тема для primary кнопки */
+html[data-theme="dark"] .primary {
+  background-color: transparent;
+  color: var(--text-main);
+  border-color: var(--border-black);
+}
+
+html[data-theme="dark"] .primary:hover:not(:disabled) {
+  background-color: var(--accent);
+  color: #111111;
+  border-color: var(--accent);
+}
+
+/* ==========================================================================
+   СТАТУСНЫЕ СООБЩЕНИЯ
+   ========================================================================== */
+.status {
+  margin: 8px 0 0 0;
+  padding: 10px 14px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #c62828;
+  text-align: center;
+  background-color: rgba(198, 40, 40, 0.1);
+  border: 2px solid #c62828;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ==========================================================================
+   АДАПТИВНОСТЬ
+   ========================================================================== */
+@media (max-width: 768px) {
+  .eiry-modal-overlay {
+    padding: 16px;
+  }
+
+  .eiry-modal,
+  .eiry-modal--wide {
+    max-width: 100%;
+    max-height: 95vh;
+  }
+
+  .eiry-modal-header {
+    padding: 16px 20px;
+  }
+
+  .eiry-modal-header h3 {
+    font-size: 1.1rem;
+  }
+
+  .body {
+    padding: 20px;
+    gap: 20px;
+  }
+
+  .avatarRow {
+    gap: 15px;
+    padding: 12px;
+  }
+
+  .avatar {
+    width: 60px;
+    height: 60px;
+  }
+
+  .fileButton {
+    padding: 6px 12px;
+    font-size: 0.65rem;
+  }
+
+  .help {
+    font-size: 0.55rem;
+  }
+
+  .field span {
+    font-size: 0.7rem;
+  }
+
+  .field input,
+  .field textarea {
+    padding: 10px 12px;
+    font-size: 0.8rem;
+  }
+
+  .footer {
+    gap: 10px;
+  }
+
+  .secondary,
+  .primary {
+    padding: 8px 16px;
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .eiry-modal-overlay {
+    padding: 12px;
+  }
+
+  .eiry-modal-header {
+    padding: 12px 16px;
+  }
+
+  .eiry-modal-header h3 {
+    font-size: 1rem;
+  }
+
+  .eiry-modal-close {
+    font-size: 1.5rem;
+    width: 28px;
+    height: 28px;
+  }
+
+  .body {
+    padding: 16px;
+    gap: 16px;
+  }
+
+  .avatarRow {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+    padding: 16px;
+  }
+
+  .avatarMeta {
+    align-items: center;
+  }
+
+  .avatar {
+    width: 80px;
+    height: 80px;
+  }
+
+  .fileButton {
+    padding: 8px 14px;
+    font-size: 0.7rem;
+  }
+
+  .help {
+    font-size: 0.55rem;
+    text-align: center;
+  }
+
+  .field span {
+    font-size: 0.65rem;
+  }
+
+  .field input,
+  .field textarea {
+    padding: 8px 10px;
+    font-size: 0.75rem;
+  }
+
+  .footer {
+    flex-direction: column-reverse;
+    gap: 8px;
+  }
+
+  .secondary,
+  .primary {
+    width: 100%;
+    justify-content: center;
+    padding: 10px 16px;
+  }
+
+  .status {
+    padding: 8px 12px;
+    font-size: 0.65rem;
+  }
+}

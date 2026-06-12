@@ -1,0 +1,513 @@
+/* ==========================================================================
+   ОВЕРЛЕЙ МОДАЛЬНОГО ОКНА
+   ========================================================================== */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* ==========================================================================
+   МОДАЛЬНОЕ ОКНО (единый стиль с .hero)
+   ========================================================================== */
+.modal {
+  background-color: var(--bg-color);
+  border: 2px solid var(--border-black);
+  box-shadow: var(--shadow-black);
+  max-width: 520px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.2s ease;
+}
+
+/* ==========================================================================
+   ЗАГОЛОВОК МОДАЛЬНОГО ОКНА
+   ========================================================================== */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  border-bottom: 2px solid var(--border-black);
+}
+
+.headerLeft {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.headerIcon {
+  color: var(--accent);
+}
+
+.title {
+  margin: 0;
+  font-family: "Crazy", "Montserrat", sans-serif;
+  font-size: 1.3rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+  color: var(--text-main);
+}
+
+.closeBtn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 4px;
+  transition: color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.closeBtn:hover {
+  color: var(--accent);
+}
+
+/* ==========================================================================
+   УСПЕШНОЕ СООБЩЕНИЕ
+   ========================================================================== */
+.success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 40px 24px;
+  gap: 16px;
+}
+
+.successIcon {
+  color: var(--accent);
+}
+
+.successText {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-main);
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.successSub {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.successBtn {
+  background-color: var(--border-black);
+  color: var(--bg-elevated);
+  border: 2px solid var(--border-black);
+  padding: 10px 24px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: "Montserrat", sans-serif;
+  margin-top: 8px;
+}
+
+.successBtn:hover {
+  background-color: var(--accent);
+  color: var(--bg-white);
+  border-color: var(--accent);
+}
+
+/* Темная тема */
+html[data-theme="dark"] .successBtn {
+  background-color: transparent;
+  color: var(--text-main);
+  border-color: var(--border-black);
+}
+
+html[data-theme="dark"] .successBtn:hover {
+  background-color: var(--accent);
+  color: #111111;
+  border-color: var(--accent);
+}
+
+/* ==========================================================================
+   ФОРМА
+   ========================================================================== */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 24px;
+}
+
+/* ==========================================================================
+   ИНФОРМАЦИЯ О ЦЕЛИ ЖАЛОБЫ
+   ========================================================================== */
+.targetInfo {
+  background-color: var(--bg-paper);
+  border: 1px solid var(--border-black);
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.targetItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.targetLabel {
+  font-weight: 500;
+  color: var(--bg-elevated);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.targetValue {
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   ПОЛЯ ФОРМЫ
+   ========================================================================== */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-main);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.select {
+  width: 100%;
+  padding: 12px 14px;
+  background-color: var(--bg-paper);
+  border: 2px solid var(--border-black);
+  border-radius: 0;
+  color: var(--text-main);
+  font-size: 0.85rem;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.2s ease;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'></polyline></svg>");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 16px;
+  padding-right: 40px;
+}
+
+.select:focus {
+  border-color: var(--accent);
+  background-color: var(--bg-white);
+  box-shadow: 3px 3px 0px var(--accent);
+}
+
+.select:hover:not(:focus) {
+  border-color: var(--accent);
+}
+
+.select option {
+  background-color: var(--bg-white);
+  color: #111111;
+}
+
+
+
+/* ==========================================================================
+   TEXTAREA
+   ========================================================================== */
+.textarea {
+  width: 100%;
+  padding: 12px 14px;
+  background-color: var(--bg-paper);
+  border: 2px solid var(--border-black);
+  border-radius: 0;
+  color: var(--text-main);
+  font-size: 0.85rem;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  resize: vertical;
+  min-height: 100px;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.textarea:focus {
+  border-color: var(--accent);
+  background-color: var(--bg-white);
+  box-shadow: 3px 3px 0px var(--accent);
+}
+
+.textarea:hover:not(:focus) {
+  border-color: var(--accent);
+}
+
+/* ==========================================================================
+   ЗАГРУЗКА ФАЙЛА
+   ========================================================================== */
+.fileLabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background-color: var(--bg-paper);
+  border: 2px dashed var(--border-black);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.fileLabel:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background-color: var(--bg-elevated);
+}
+
+.fileInput {
+  display: none;
+}
+
+/* ==========================================================================
+   ПРЕВЬЮ ФАЙЛА
+   ========================================================================== */
+.filePreview {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background-color: var(--bg-paper);
+  border: 1px solid var(--border-black);
+  margin-top: 8px;
+}
+
+.fileName {
+  font-size: 0.75rem;
+  color: var(--text-main);
+  font-weight: 500;
+}
+
+.fileRemove {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 1.1rem;
+  padding: 0 4px;
+  transition: color 0.2s ease;
+}
+
+.fileRemove:hover {
+  color: var(--accent);
+}
+
+/* ==========================================================================
+   КНОПКА ОТПРАВКИ
+   ========================================================================== */
+.submitBtn {
+  width: 100%;
+  background-color: var(--border-black);
+  color: var(--bg-elevated);
+  border: 2px solid var(--border-black);
+  padding: 12px 24px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: "Montserrat", sans-serif;
+  margin-top: 8px;
+}
+
+.submitBtn:hover:not(:disabled) {
+  background-color: var(--accent);
+  color: var(--bg-white);
+  border-color: var(--accent);
+}
+
+.submitBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Темная тема для кнопки */
+html[data-theme="dark"] .submitBtn {
+  background-color: transparent;
+  color: var(--text-main);
+  border-color: var(--border-black);
+}
+
+html[data-theme="dark"] .submitBtn:hover:not(:disabled) {
+  background-color: var(--accent);
+  color: #111111;
+  border-color: var(--accent);
+}
+
+/* ==========================================================================
+   АДАПТИВНОСТЬ
+   ========================================================================== */
+@media (max-width: 768px) {
+  .overlay {
+    padding: 16px;
+  }
+
+  .modal {
+    max-width: 100%;
+    max-height: 95vh;
+  }
+
+  .header {
+    padding: 16px 20px;
+  }
+
+  .title {
+    font-size: 1.1rem;
+  }
+
+  .form {
+    padding: 20px;
+    gap: 16px;
+  }
+
+  .success {
+    padding: 30px 20px;
+  }
+
+  .successText {
+    font-size: 1rem;
+  }
+
+  .successSub {
+    font-size: 0.75rem;
+  }
+
+  .targetInfo {
+    padding: 10px 14px;
+  }
+
+  .targetItem {
+    font-size: 0.75rem;
+  }
+
+  .select,
+  .textarea {
+    padding: 10px 12px;
+    font-size: 0.8rem;
+  }
+
+  .submitBtn {
+    padding: 10px 20px;
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .overlay {
+    padding: 12px;
+  }
+
+  .header {
+    padding: 12px 16px;
+  }
+
+  .title {
+    font-size: 1rem;
+  }
+
+  .headerIcon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .closeBtn {
+    padding: 2px;
+  }
+
+  .form {
+    padding: 16px;
+    gap: 14px;
+  }
+
+  .success {
+    padding: 24px 16px;
+  }
+
+  .successIcon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .successText {
+    font-size: 0.9rem;
+  }
+
+  .successSub {
+    font-size: 0.7rem;
+  }
+
+  .successBtn {
+    padding: 8px 20px;
+    font-size: 0.7rem;
+  }
+
+  .targetInfo {
+    padding: 8px 12px;
+  }
+
+  .targetItem {
+    font-size: 0.7rem;
+    gap: 6px;
+  }
+
+  .label {
+    font-size: 0.7rem;
+  }
+
+  .select,
+  .textarea {
+    padding: 8px 10px;
+    font-size: 0.75rem;
+  }
+
+  .fileLabel {
+    padding: 8px 12px;
+    font-size: 0.7rem;
+  }
+
+  .submitBtn {
+    padding: 10px 16px;
+    font-size: 0.7rem;
+  }
+
+  .fileName {
+    font-size: 0.7rem;
+  }
+}

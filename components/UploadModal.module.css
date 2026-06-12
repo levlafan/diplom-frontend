@@ -1,0 +1,40 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(15, 23, 42, 0.45);
+  display: grid;
+  place-items: center;
+  padding: 18px;
+}
+
+.modal {
+  width: min(760px, 100%);
+  background: #EFEFEC;
+  border-radius: 20px;
+  box-shadow: var(--shadow-soft);
+  padding: 22px;
+  display: grid;
+  gap: 14px;
+  max-height: 92vh;
+  overflow: auto;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header h2 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.closeButton {
+  border: 0;
+  background: transparent;
+  font-size: 1.4rem;
+  cursor: pointer;
+  color: var(--text-muted);
+}

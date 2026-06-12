@@ -1,0 +1,511 @@
+/* page.module.css */
+
+/* ==========================================================================
+   ОСНОВНОЙ КОНТЕЙНЕР
+   ========================================================================== */
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  font-family: "Montserrat", sans-serif;
+}
+
+/* ==========================================================================
+   ТЕМНАЯ И СВЕТЛАЯ ТЕМЫ
+   ========================================================================== */
+.dark {
+  background-color: var(--bg-color);
+  color: var(--text-main);
+}
+
+.light {
+  background-color: var(--bg-white);
+  color: #111111;
+}
+
+/* ==========================================================================
+   ПАНЕЛЬ ИНСТРУМЕНТОВ
+   ========================================================================== */
+.toolbar {
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 24px;
+  background-color: var(--bg-color);
+  border-bottom: 2px solid var(--border-black);
+  flex-wrap: wrap;
+  gap: 12px;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.backBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: var(--bg-paper);
+  border: 2px solid var(--border-black);
+  color: var(--text-main);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.backBtn:hover {
+  background-color: var(--accent);
+  color: var(--bg-white);
+  border-color: var(--accent);
+}
+
+.title {
+  font-family: "Crazy", "Montserrat", sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0;
+  color: var(--text-main);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+}
+
+/* ==========================================================================
+   УПРАВЛЕНИЕ ГЛАВАМИ
+   ========================================================================== */
+.chapterPick {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.chapterSelect {
+  padding: 8px 12px;
+  background-color: var(--bg-paper);
+  border: 2px solid var(--border-black);
+  color: var(--text-main);
+  font-size: 0.8rem;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.chapterSelect:focus {
+  border-color: var(--accent);
+}
+
+/* ==========================================================================
+   КНОПКИ УПРАВЛЕНИЯ
+   ========================================================================== */
+.btn {
+  padding: 8px 16px;
+  background-color: var(--bg-paper);
+  border: 2px solid var(--border-black);
+  color: var(--text-main);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: "Montserrat", sans-serif;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn:hover {
+  background-color: var(--accent);
+  color: var(--bg-white);
+  border-color: var(--accent);
+}
+
+.btnActive {
+  background-color: var(--accent);
+  color: var(--bg-white);
+  border-color: var(--accent);
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.zoomLabel {
+  font-size: 0.7rem;
+  font-weight: 600;
+  min-width: 45px;
+  text-align: center;
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   ОСНОВНОЙ РИДЕР
+   ========================================================================== */
+.reader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 20px;
+  padding: 30px 20px;
+  flex: 1;
+  min-height: calc(100vh - 70px);
+}
+
+.navBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  background-color: var(--bg-paper);
+  border: 2px solid var(--border-black);
+  color: var(--text-main);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 20vh;
+  flex-shrink: 0;
+}
+
+.navBtn:hover:not(:disabled) {
+  background-color: var(--accent);
+  color: var(--bg-white);
+  border-color: var(--accent);
+}
+
+.navBtn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.pageWrap {
+  text-align: center;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.image {
+  max-width: 100%;
+  height: auto;
+  transition: transform 0.2s ease;
+  border: 1px solid var(--border-black);
+}
+
+.pageNum {
+  margin-top: 16px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ==========================================================================
+   ВЕБТУН РЕЖИМ (ВЕРТИКАЛЬНЫЙ)
+   ========================================================================== */
+.webtoon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  padding: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+  height: calc(100vh - 70px);
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+.webtoon::-webkit-scrollbar {
+  width: 8px;
+}
+
+.webtoon::-webkit-scrollbar-track {
+  background: var(--bg-paper);
+}
+
+.webtoon::-webkit-scrollbar-thumb {
+  background: var(--border-black);
+}
+
+.webtoon::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+.webtoon .image {
+  margin-bottom: 0;
+  border-bottom: none;
+}
+
+.webtoon .image:last-child {
+  margin-bottom: 0;
+}
+
+/* ==========================================================================
+   ПЛАТЁЖНАЯ ЗАГЛУШКА
+   ========================================================================== */
+.paywall {
+  max-width: 500px;
+  margin: 80px auto;
+  padding: 32px;
+  background-color: var(--bg-color);
+  border: 2px solid var(--accent);
+  box-shadow: var(--shadow-black);
+  text-align: center;
+}
+
+.paywall h2 {
+  font-family: "Crazy", "Montserrat", sans-serif;
+  font-size: 1.3rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  margin: 0 0 12px 0;
+  color: var(--accent);
+}
+
+.paywall p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin: 8px 0;
+}
+
+.price {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin: 16px 0;
+}
+
+.payBtn {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 12px 28px;
+  background-color: var(--border-black);
+  color: var(--bg-elevated);
+  border: 2px solid var(--border-black);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: "Montserrat", sans-serif;
+  box-shadow: 4px 4px 0px var(--accent);
+}
+
+.payBtn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px var(--accent);
+  background-color: var(--accent);
+  color: var(--bg-white);
+  border-color: var(--accent);
+}
+
+.payBtnFree {
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 12px;
+  padding: 12px 20px;
+  background-color: transparent;
+  border: 2px solid #8b5cf6;
+  color: #8b5cf6;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: "Montserrat", sans-serif;
+}
+
+.payBtnFree:hover {
+  background-color: #8b5cf6;
+  color: var(--bg-white);
+  border-color: #8b5cf6;
+}
+
+.walletLink {
+  display: block;
+  margin-top: 16px;
+  color: var(--accent);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.walletLink:hover {
+  text-decoration: underline;
+}
+
+/* Темная тема для платёжной заглушки */
+html[data-theme="dark"] .payBtn {
+  background-color: transparent;
+  color: var(--text-main);
+  border-color: var(--border-black);
+}
+
+html[data-theme="dark"] .payBtn:hover {
+  background-color: var(--accent);
+  color: #111111;
+  border-color: var(--accent);
+}
+
+/* ==========================================================================
+   АДАПТИВНОСТЬ
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .toolbar {
+    padding: 10px 16px;
+    gap: 8px;
+  }
+
+  .title {
+    font-size: 0.85rem;
+    max-width: 150px;
+  }
+
+  .btn {
+    padding: 6px 12px;
+    font-size: 0.65rem;
+  }
+
+  .chapterSelect {
+    padding: 6px 10px;
+    font-size: 0.7rem;
+  }
+
+  .reader {
+    gap: 10px;
+    padding: 20px 10px;
+  }
+
+  .navBtn {
+    width: 44px;
+    height: 44px;
+  }
+
+  .paywall {
+    margin: 40px 20px;
+    padding: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 12px;
+  }
+
+  .chapterPick {
+    justify-content: center;
+  }
+
+  .controls {
+    justify-content: center;
+  }
+
+  .title {
+    text-align: center;
+    max-width: none;
+  }
+
+  .reader {
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .navBtn {
+    margin-top: 0;
+    width: 48px;
+    height: 48px;
+  }
+
+  .navBtn:first-of-type {
+    order: 1;
+  }
+
+  .pageWrap {
+    order: 2;
+  }
+
+  .navBtn:last-of-type {
+    order: 3;
+  }
+
+  .webtoon {
+    padding: 12px;
+    height: calc(100vh - 160px);
+  }
+
+  .paywall {
+    margin: 30px 16px;
+    padding: 20px;
+  }
+
+  .paywall h2 {
+    font-size: 1.1rem;
+  }
+
+  .payBtn, .payBtnFree {
+    padding: 10px 20px;
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .toolbar {
+    padding: 8px 12px;
+  }
+
+  .btn {
+    padding: 5px 10px;
+    font-size: 0.55rem;
+  }
+
+  .chapterSelect {
+    padding: 5px 8px;
+    font-size: 0.6rem;
+  }
+
+  .zoomLabel {
+    font-size: 0.6rem;
+    min-width: 35px;
+  }
+
+  .navBtn {
+    width: 40px;
+    height: 40px;
+  }
+
+  .navBtn svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .pageNum {
+    font-size: 0.6rem;
+  }
+
+  .paywall {
+    padding: 16px;
+  }
+
+  .paywall h2 {
+    font-size: 1rem;
+  }
+
+  .price {
+    font-size: 0.85rem;
+  }
+}

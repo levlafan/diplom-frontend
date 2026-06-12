@@ -1,0 +1,151 @@
+/* Основной контейнер карточки */
+.card {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: #111111;
+  background-color: #ffffff; /* Белый фон карточки на сером фоне сайта */
+  border: 1px solid #111111; /* Строгая черная рамка вместо теней */
+  height: 100%;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Эффект брутализма при наведении: жесткое смещение */
+.card:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: 4px 4px 0px #111111; /* Жесткая черная тень */
+}
+
+/* Контейнер для обложки */
+.coverWrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4; /* Пропорции журнальной обложки */
+  background-color: #eaeaea;
+  border-bottom: 1px solid #111111; /* Отделяем картинку от текста линией */
+  overflow: hidden;
+}
+
+.cover {
+  object-fit: cover;
+  transition: filter 0.3s ease;
+}
+
+/* Бейджи (Платно / Соавтор) в брутальном стиле */
+.coAuthorBadge, .paidBadge {
+  position: absolute;
+  top: 10px;
+  padding: 4px 8px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border: 1px solid #111111;
+  z-index: 2;
+}
+
+.coAuthorBadge {
+  left: 10px;
+  background-color: #ffffff;
+  color: #111111;
+}
+
+.paidBadge {
+  right: 10px;
+  background-color: #111111; /* Черный бейдж для платных */
+  color: #ffffff;
+}
+
+/* Прогресс-бар */
+.progressBar {
+  position: relative;
+  width: 100%;
+  height: 18px;
+  background-color: #eaeaea;
+  border-bottom: 1px solid #111111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.progressFill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background-color: var(--accent); /* Прогресс заполняется сплошным черным цветом */
+  z-index: 1;
+}
+
+.progressBar span {
+  position: relative;
+  z-index: 2;
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: #111111;
+  mix-blend-mode: difference; /* Текст инвертируется (белый на черном фоне) */
+}
+
+/* Блок с текстовой информацией */
+.info {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+/* Заголовок комикса */
+.title {
+  font-size: 1.1rem;
+  font-weight: 500;
+  line-height: 1.3;
+  margin: 0 0 6px 0;
+  text-transform: uppercase; /* Газетный стиль */
+  letter-spacing: -0.3px;
+  /* Ограничение текста до 2 строк */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Автор */
+.author {
+  font-size: 0.85rem;
+  color: #666666;
+  margin: 0 0 12px 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.authorName {
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.authorName:hover {
+  color: #111111;
+  text-decoration: underline;
+}
+
+/* Мета-данные (Рейтинг и Главы) в самом низу */
+.meta {
+  margin-top: auto; /* Прижимает к низу карточки */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  border-top: 1px dashed #cccccc; /* Аккуратный пунктир над мета-данными */
+  padding-top: 8px;
+}
+
+.meta span:first-child {
+  color: #111111; /* Цвет рейтинга */
+}
+
+.meta span:last-child {
+  color: #666666; /* Цвет глав */
+}

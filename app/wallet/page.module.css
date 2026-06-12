@@ -1,0 +1,436 @@
+/* ==========================================================================
+   ОСНОВНОЙ КОНТЕЙНЕР СТРАНИЦЫ
+   ========================================================================== */
+.page {
+  color: var(--text-main);
+  font-family: "Montserrat", sans-serif;
+  min-height: 100vh;
+  padding: 40px 20px;
+  box-sizing: border-box;
+}
+
+.container {
+  max-width: 100%;
+  margin: 0 110px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+/* ==========================================================================
+   ЗАГОЛОВОК СТРАНИЦЫ
+   ========================================================================== */
+.title {
+  font-family: "Crazy", "Montserrat", sans-serif;
+  font-size: 30pt;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  margin: 0;
+  border-bottom: 2px solid var(--border-black);
+  padding-bottom: 12px;
+  color: var(--text-main);
+}
+
+/* ==========================================================================
+   БЛОК ТЕКУЩЕГО БАЛАНСА (единый стиль с .hero)
+   ========================================================================== */
+.balanceCard {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  background-color: var(--bg-color);
+  border: 2px solid var(--border-black);
+  box-shadow: var(--shadow-black);
+  padding: 40px;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.balanceIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-paper);
+  border: 1px solid var(--border-black);
+  padding: 16px;
+  color: var(--accent);
+}
+
+.balanceInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.balanceLabel {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.balanceAmount {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1;
+  color: var(--accent);
+}
+
+/* ==========================================================================
+   КАРТОЧКА ПОПОЛНЕНИЯ (единый стиль с .hero)
+   ========================================================================== */
+.paymentCard {
+  background-color: var(--bg-color);
+  border: 2px solid var(--border-black);
+  box-shadow: var(--shadow-black);
+  padding: 40px;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.paymentTitle {
+  font-family: "Montserrat", sans-serif;
+  font-size: 20pt;
+  font-weight: 500;
+  text-transform: uppercase;
+  border-bottom: 2px solid var(--border-black);
+  padding-bottom: 12px;
+  margin: 0 0 5px 0;
+  color: var(--text-main);
+  letter-spacing: -0.5px;
+}
+
+/* ==========================================================================
+   ПОЛЯ ВВОДА
+   ========================================================================== */
+.inputRow {
+  display: flex;
+  align-items: flex-end;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+  min-width: 180px;
+}
+
+.inputLabel {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-main);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.inputWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.input {
+  width: 100%;
+  padding: 14px 16px;
+  font-size: 1rem;
+  font-weight: 500;
+  font-family: "Montserrat", sans-serif;
+  background-color: var(--bg-paper);
+  border: 2px solid var(--border-black);
+  border-radius: 0;
+  outline: none;
+  box-sizing: border-box;
+  color: var(--text-main);
+  transition: all 0.2s ease;
+}
+
+.input:focus {
+  background-color: var(--bg-white);
+  border-color: var(--accent);
+  box-shadow: 3px 3px 0px var(--accent);
+}
+
+.input:hover:not(:focus):not(:disabled) {
+  border-color: var(--accent);
+}
+
+.input:disabled {
+  background-color: var(--bg-paper);
+  color: var(--text-muted);
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* ==========================================================================
+   КНОПКИ
+   ========================================================================== */
+.primaryButton, .secondaryButton {
+  background-color: var(--border-black);
+  color: var(--bg-elevated);
+  border: 2px solid var(--border-black);
+  border-radius: 0;
+  padding: 14px 28px;
+  font-size: 10pt;
+  font-weight: 500;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  white-space: nowrap;
+  transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.2s;
+  height: 53px;
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+}
+
+.primaryButton:hover:not(:disabled), 
+.secondaryButton:hover {
+  background-color: var(--accent);
+  color: var(--bg-white);
+  border-color: var(--bg-white);
+}
+
+.primaryButton:active:not(:disabled),
+.secondaryButton:active {
+  transform: translate(2px, 2px);
+  box-shadow: 0px 0px 0px var(--bg-white);
+}
+
+.primaryButton:disabled {
+  background-color: var(--bg-paper);
+  border-color: var(--border-black);
+  color: var(--text-muted);
+  box-shadow: none;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ==========================================================================
+   НИЖНИЙ БЛОК НАВИГАЦИОННЫХ КНОПОК
+   ========================================================================== */
+.actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+  
+}
+
+/* ==========================================================================
+   СТАТУСНЫЕ СООБЩЕНИЯ
+   ========================================================================== */
+.statusMessage {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 18px;
+  border: 2px solid var(--border-black);
+  font-size: 12pt;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background-color: var(--bg-paper);
+  color: var(--text-main);
+}
+
+.statusSuccess {
+  background-color: var(--accent);
+  color: #111111;
+  border-color: var(--border-black);
+}
+
+.statusError {
+  background-color: #c62828;
+  color: #ffffff;
+  border-color: #c62828;
+}
+
+.hint {
+  border-top: 1px dashed var(--border-black);
+  padding-top: 20px;
+  margin-top: 5px;
+}
+
+.hint p {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin: 0;
+  letter-spacing: 0.3px;
+}
+
+/* Анимация спиннера */
+.spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ==========================================================================
+   АДАПТИВНОСТЬ
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .container {
+    margin: 0 60px;
+  }
+  
+  .balanceCard,
+  .paymentCard {
+    padding: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    margin: 0 20px;
+    gap: 30px;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .balanceCard {
+    padding: 24px;
+    gap: 20px;
+  }
+
+  .balanceIcon {
+    padding: 12px;
+  }
+
+  .balanceAmount {
+    font-size: 2rem;
+  }
+
+  .paymentCard {
+    padding: 24px;
+    gap: 20px;
+  }
+
+  .paymentTitle {
+    font-size: 1.1rem;
+  }
+
+  .inputRow {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .primaryButton,
+  .secondaryButton {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .actions {
+    flex-direction: column-reverse;
+    gap: 12px;
+  }
+
+  .actions .primaryButton,
+  .actions .secondaryButton {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    margin: 0 16px;
+    gap: 24px;
+  }
+
+  .title {
+    font-size: 1.6rem;
+  }
+
+  .balanceCard {
+    padding: 20px;
+    gap: 15px;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .balanceIcon {
+    padding: 10px;
+  }
+
+  .balanceLabel {
+    font-size: 0.7rem;
+  }
+
+  .balanceAmount {
+    font-size: 1.6rem;
+  }
+
+  .paymentCard {
+    padding: 20px;
+    gap: 16px;
+  }
+
+  .paymentTitle {
+    font-size: 1rem;
+  }
+
+  .inputLabel {
+    font-size: 0.7rem;
+  }
+
+  .input {
+    padding: 12px 14px;
+    font-size: 0.9rem;
+  }
+
+  .primaryButton,
+  .secondaryButton {
+    padding: 12px 20px;
+    font-size: 0.75rem;
+    height: 46px;
+  }
+
+  .statusMessage {
+    padding: 10px 14px;
+    font-size: 0.7rem;
+  }
+
+  .hint p {
+    font-size: 0.65rem;
+  }
+}
+
+/* ==========================================================================
+   ТЕМНАЯ ТЕМА - ДОПОЛНИТЕЛЬНЫЕ СТИЛИ
+   ========================================================================== */
+html[data-theme="dark"] .balanceIcon {
+  background-color: var(--bg-paper);
+  border-color: var(--border-black);
+}
+
+html[data-theme="dark"] .statusSuccess {
+  background-color: var(--accent);
+  color: #111111;
+}
+
+html[data-theme="dark"] .statusError {
+  background-color: #c62828;
+  color: #ffffff;
+}
+
