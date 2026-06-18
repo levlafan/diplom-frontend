@@ -17,7 +17,7 @@ export default function NotificationBell({ userId }) {
   // Подключение к Socket.io
   useEffect(() => {
     if (!userId) return;
-    const socket = io("http://localhost:4000");
+    const socket = io("http://31.129.105.145:4000");
     socket.emit("join", userId);
     socket.on("new_notification", (notif) => {
       setList((prev) => [notif, ...prev]);
