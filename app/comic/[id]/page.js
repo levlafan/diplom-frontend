@@ -1,10 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import Image from "next/image";
 import axios from "axios";
+import JSZip from "jszip";
+import imageCompression from "browser-image-compression";
 import { useAuth } from "../../../src/context/AuthContext";
 import { resolveStorageUrl } from "../../../src/utils/media";
 import LibraryButton from "../../../components/LibraryButton";
@@ -33,6 +35,11 @@ export default function ComicDetailPage() {
   const [isPaidEdit, setIsPaidEdit] = useState(false);
   const [showStatusEdit, setShowStatusEdit] = useState(false);
   const [editStatus, setEditStatus] = useState("ongoing");
+  
+  // Для предпросмотра страниц
+  const [chapterPages, setChapterPages] = useState([]);
+  const [currentPageIndex, setCurrentPageIndex] = useState(0);
+  const previewUrlsRef = useRef([]);
 
   const isOwner = user?.id && post?.user_id && +user.id === +post.user_id;
   const isCoauthor = Array.isArray(post?.co_author_ids) && post.co_author_ids.includes(Number(user?.id));
@@ -51,6 +58,95 @@ export default function ComicDetailPage() {
     const option = STATUS_OPTIONS.find(opt => opt.value === status);
     return option ? option.label : status;
   };
+
+  // Компрессия в WebP
+  async function compressToWebp(file, baseName = "image") {
+    if (!file) return null;
+    try {
+      const compressed = await imageCompression(file, { 
+        maxSizeMB: 1, 
+        maxWidthOrHeight: 1920, 
+        useWebWorker: true, 
+        fileType: "image/webp", 
+        initialQuality: 0.8 
+      });
+      return new File(
+        [compressed], 
+        `${String(baseName).replace(/[^\w\-]+/g, "_").slice(0, 80) || "image"}.webp`, 
+        { type: "image/webp" }
+      );
+    } catch { 
+      return file; 
+    }
+  }
+
+  // Обработка ZIP для предпросмотра
+  async function handleChapterZipPreview(file) {
+    if (!file?.name?.toLowerCase().endsWith(".zip")) {
+      alert("Требуется ZIP-файл.");
+      return;
+    }
+
+    try {
+      const loadedZip = await JSZip.loadAsync(file);
+      const entries = Object.values(loadedZip.files)
+        .filter((e) => !e.dir && /\.(jpg|jpeg|png|webp|gif)$/i.test(e.name))
+        .map((e) => e.name);
+
+      if (!entries.length) {
+        alert("Нет изображений в архиве.");
+        return;
+      }
+
+      const outPages = [];
+      for (let i = 0; i < entries.length; i++) {
+        const blob = await loadedZip.file(entries[i]).async("blob");
+        const webp = await compressToWebp(
+          new File([blob], entries[i], { type: blob.type }), 
+          entries[i].replace(/\.[^.]+$/, "")
+        );
+        const fileName = `${String(i + 1).padStart(3, "0")}_${webp.name}`;
+        outPages.push({
+          name: fileName,
+          previewUrl: URL.createObjectURL(webp)
+        });
+      }
+
+      // Сохраняем URL для очистки
+      previewUrlsRef.current = outPages.map(p => p.previewUrl);
+      setChapterPages(outPages);
+      setCurrentPageIndex(0);
+    } catch (error) {
+      console.error("Ошибка обработки ZIP:", error);
+      alert("Ошибка при обработке ZIP-файла");
+    }
+  }
+
+  // Перемещение страницы в предпросмотре (МЕНЯЕТ МЕСТАМИ)
+  function moveChapterPage(index, direction) {
+    const nextIndex = index + direction;
+    if (nextIndex < 0 || nextIndex >= chapterPages.length) return;
+    
+    setChapterPages((prev) => {
+      const next = [...prev];
+      // Меняем местами два элемента
+      [next[index], next[nextIndex]] = [next[nextIndex], next[index]];
+      return next;
+    });
+    
+    // Обновляем текущий индекс на новый
+    setCurrentPageIndex(nextIndex);
+  }
+
+  // Очищаем URL только при размонтировании компонента
+  useEffect(() => {
+    return () => {
+      previewUrlsRef.current.forEach((url) => {
+        if (url) URL.revokeObjectURL(url);
+      });
+      previewUrlsRef.current = [];
+    };
+  }, []);
 
   useEffect(() => {
     if (!post?.co_author_ids?.length) return;
@@ -104,6 +200,9 @@ export default function ComicDetailPage() {
       setChapters(res.data.chapters || []);
       setChapterZip(null);
       setChapterTitle("");
+      setChapterPages([]);
+      setCurrentPageIndex(0);
+      previewUrlsRef.current = [];
       setShowChapterForm(false);
     } catch (err) {
       alert(err?.response?.data?.message || "Ошибка");
@@ -262,8 +361,7 @@ export default function ComicDetailPage() {
               </div>
               {(post.is_paid || Number(post.price) > 0) && (
                 <p className={styles.priceLine}>
-                  {post.is_paid ? "Платный комикс" : "Есть платные главы"} — от {Number(post.price || 0).toFixed(2)}{" "}
-                  
+                  {post.is_paid ? "Платный комикс" : "Есть платные главы"} — от {Number(post.price || 0).toFixed(2)}
                 </p>
               )}
             </div>
@@ -303,10 +401,11 @@ export default function ComicDetailPage() {
           </div>
         </div>
 
-        {/* ФОРМА ДОБАВЛЕНИЯ ГЛАВЫ */}
+        {/* ФОРМА ДОБАВЛЕНИЯ ГЛАВЫ С ПРЕДПРОСМОТРОМ СТРАНИЦ */}
         {canManage && showChapterForm && (
           <form onSubmit={handleAddChapter} className={styles.authorForm}>
             <h3 className={styles.formTitle}>Добавить новую главу</h3>
+            
             <label className={styles.formLabel}>
               <span>Номер или Название главы</span>
               <input
@@ -317,21 +416,106 @@ export default function ComicDetailPage() {
                 onChange={(e) => setChapterTitle(e.target.value)}
               />
             </label>
+
             <label className={styles.formLabel}>
               <span>Архив с изображениями (ZIP)</span>
               <input
                 type="file"
                 accept=".zip"
                 className={styles.fileField}
-                onChange={(e) => setChapterZip(e.target.files?.[0] || null)}
+                onChange={async (e) => {
+                  const file = e.target.files?.[0] || null;
+                  if (file) {
+                    setChapterZip(file);
+                    await handleChapterZipPreview(file);
+                  } else {
+                    setChapterZip(null);
+                    setChapterPages([]);
+                    setCurrentPageIndex(0);
+                    previewUrlsRef.current = [];
+                  }
+                }}
                 required
               />
             </label>
+
+            {/* Предпросмотр страниц */}
+            {chapterPages.length > 0 && (
+              <div className={styles.chapterPreview}>
+                <h4>Предпросмотр страниц ({chapterPages.length})</h4>
+                
+                <div className={styles.chapterPreviewContainer}>
+                  
+                  <div className={styles.chapterPreviewImage}>
+                    <Image
+                      src={chapterPages[currentPageIndex].previewUrl}
+                      alt={`Страница ${currentPageIndex + 1}`}
+                      width={200}
+                      height={280}
+                      className={styles.chapterPreviewImg}
+                      unoptimized
+                    />
+                    <p className={styles.chapterPreviewCount}>
+                      {currentPageIndex + 1} / {chapterPages.length}
+                    </p>
+                    <div className={styles.chapterPreviewActions}>
+                      <button
+                        type="button"
+                        onClick={() => moveChapterPage(currentPageIndex, -1)}
+                        disabled={currentPageIndex === 0}
+                      >
+                        ↑
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => moveChapterPage(currentPageIndex, 1)}
+                        disabled={currentPageIndex === chapterPages.length - 1}
+                      >
+                        ↓
+                      </button>
+                    </div>
+                  </div>
+                  
+                </div>
+
+                {/* Миниатюры всех страниц */}
+                <div className={styles.chapterThumbnails}>
+                  {chapterPages.map((page, idx) => (
+                    <button
+                      key={page.name || idx}
+                      type="button"
+                      className={`${styles.chapterThumbnail} ${idx === currentPageIndex ? styles.chapterThumbnailActive : ""}`}
+                      onClick={() => setCurrentPageIndex(idx)}
+                    >
+                      <Image
+                        src={page.previewUrl}
+                        alt={`Страница ${idx + 1}`}
+                        width={40}
+                        height={56}
+                        className={styles.chapterThumbImg}
+                        unoptimized
+                      />
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
             <div className={styles.formActions}>
               <button type="submit" disabled={isUploading}>
                 {isUploading ? "Загрузка..." : "Загрузить главу"}
               </button>
-              <button type="button" className={styles.cancelBtn} onClick={() => setShowChapterForm(false)}>
+              <button 
+                type="button" 
+                className={styles.cancelBtn} 
+                onClick={() => {
+                  setShowChapterForm(false);
+                  setChapterPages([]);
+                  setCurrentPageIndex(0);
+                  setChapterZip(null);
+                  previewUrlsRef.current = [];
+                }}
+              >
                 Отмена
               </button>
             </div>
@@ -351,7 +535,7 @@ export default function ComicDetailPage() {
               <span>Платный комикс полностью</span>
             </label>
             <label className={styles.formLabel}>
-              <span>Минимальная цена ()</span>
+              <span>Минимальная цена</span>
               <input
                 type="number"
                 className={styles.inputField}
